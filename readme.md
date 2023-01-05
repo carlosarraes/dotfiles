@@ -46,3 +46,7 @@ Configurado para window, apps e run. Catppuccin theme.
 ## Polybar
 
 Padrão, sem plugins, cores catppuccin, adicionar bateria e wlan manualmente (ja configurado).
+
+## Zsh
+
+Não utilizo mais o zsh, configurações de quando eu utilizava.
