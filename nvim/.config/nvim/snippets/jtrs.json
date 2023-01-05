@@ -1,0 +1,108 @@
+{
+  "Console log": {
+    "prefix": "clg",
+    "body": ["console.log($1)"],
+    "description": "Log output to console"
+  },
+  "Import React": {
+    "prefix": "imr",
+    "body": ["import React from 'react'"],
+    "description": "Import React from 'react'"
+  },
+  "Import State": {
+    "prefix": "imrs",
+    "body": ["import { useState } from 'react'"],
+    "description": "Import React State from 'react'"
+  },
+  "Import Effect": {
+    "prefix": "imre",
+    "body": ["import { useEffect } from 'react'"],
+    "description": "Import React Effect from 'react'"
+  },
+  "Import State and Effect": {
+    "prefix": "imrse",
+    "body": ["import { useState, useEffect } from 'react'"],
+    "description": "Import React State and Effect from 'react'"
+  },
+  "Import Routes": {
+    "prefix": "imdr",
+    "body": ["import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'"],
+    "description": "Import React routes from 'react-router-dom'"
+  },
+  "Import Link": {
+    "prefix": "imdl",
+    "body": ["import { Link } from 'react-router-dom'"],
+    "description": "Import React Links from 'react-router-dom'"
+  },
+  "Make react Hook": {
+    "prefix": "rs",
+    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2)"],
+    "description": "useState hook"
+  },
+  "Function no params": {
+    "prefix": "cf",
+    "body": ["const $1 = () => {$2}"],
+    "description": "Creates an arrow function without params"
+  },
+  "Async function no params": {
+    "prefix": "acf",
+    "body": ["const $1 = async () => {$2}"],
+    "description": "Creates an async arrow function without params"
+  },
+  "Function with params": {
+    "prefix": "cfp",
+    "body": ["const $1 = ($2) => {$3}"],
+    "description": "Creates an arrow function with params"
+  },
+  "Async function with params": {
+    "prefix": "acfp",
+    "body": ["const $1 = async ($2) => {$3}"],
+    "description": "Creates an async arrow function with params"
+  },
+  "React Class Component": {
+    "prefix": "rce",
+    "body": [
+      "import React, { Component } from 'react'",
+      "",
+      "class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  render() {",
+      "    return <div>${2:${TM_FILENAME_BASE}}</div>",
+      "  }",
+      "}",
+      "",
+      "export default $1"
+    ],
+    "description": "Creates a React Class Component"
+  },
+  "React Functional Component": {
+    "prefix": "rfe",
+    "body": [
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return <div>${2:${TM_FILENAME_BASE}}</div>",
+      "}",
+      "",
+      "export default $1"
+    ],
+    "description": "Creates a React Class Component"
+  },
+  "Jest: Describe": {
+    "prefix": "desc",
+    "body": ["describe('$1', () => {", "  $2", "})"],
+    "description": "Starts a describe block."
+  },
+  "Jest: Test": {
+    "prefix": "test",
+    "body": ["it('se $1', () => {", "  $2", "})"],
+    "description": "Starts a describe block."
+  },
+  "Object Destructuring": {
+    "prefix": "dob",
+    "body": ["const { ${1:propName} } = ${2:object}"],
+    "description": "Destructuring an object."
+  },
+  "Array Destructuring": {
+    "prefix": "dar",
+    "body": ["const [ ${1:propName} ] = ${2:array}"],
+    "description": "Destructuring an array."
+  }
+}

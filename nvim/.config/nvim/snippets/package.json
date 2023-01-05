@@ -1,0 +1,16 @@
+{
+  "name": "mySnips",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact"
+        ],
+        "path": "./jtrs.json"
+      }
+    ]
+  }
+}
