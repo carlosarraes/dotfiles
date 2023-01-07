@@ -39,6 +39,7 @@ return require("packer").startup(function(use)
 	use("nvim-tree/nvim-tree.lua") -- Nvim Tree
 	use("norcalli/nvim-colorizer.lua") -- colors
 	use({ "shortcuts/no-neck-pain.nvim", tag = "*" }) -- no neck pain
+	use("ThePrimeagen/harpoon") -- Harpoon
 
 	-- Lualine
 	use("nvim-lualine/lualine.nvim")
