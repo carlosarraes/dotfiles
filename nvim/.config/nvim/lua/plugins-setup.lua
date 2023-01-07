@@ -28,7 +28,7 @@ return require("packer").startup(function(use)
 	use("catppuccin/nvim")
 
 	-- Tmux & window navigation
-	use("christoomey/vim-tmux-navigator")
+	-- use("christoomey/vim-tmux-navigator")
 	use("szw/vim-maximizer")
 
 	-- Essentials
@@ -57,7 +57,7 @@ return require("packer").startup(function(use)
 	use("github/copilot.vim") -- Copilot
 
 	-- Snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
+	use({ "L3MON4D3/LuaSnip", rocks = { "jsregexp" } }) -- snippet engine
 	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
 	use("rafamadriz/friendly-snippets") -- useful snippets
 

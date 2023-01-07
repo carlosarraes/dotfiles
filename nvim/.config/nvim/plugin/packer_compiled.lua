@@ -260,11 +260,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/seti/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/vim-test/vim-test"
-  },
-  ["vim-tmux-navigator"] = {
-    loaded = true,
-    path = "/home/seti/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
-    url = "https://github.com/christoomey/vim-tmux-navigator"
   }
 }
 
