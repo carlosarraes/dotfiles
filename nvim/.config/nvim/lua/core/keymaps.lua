@@ -51,7 +51,7 @@ bind("n", "x", '"_x', opts)
 bind("n", "<leader>sm", ":MaximizerToggle<CR>", opts) -- toggle split window maximization
 
 -- nvim-tree
-bind("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
+-- bind("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
 
 -- vim-tests
 bind("n", "<leader>tt", ":TestFile<CR>", opts) -- run all tests in current file

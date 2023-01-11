@@ -36,7 +36,7 @@ return require("packer").startup(function(use)
 	use("vim-scripts/ReplaceWithRegister") -- Use register for replacement grw
 	use("numToStr/Comment.nvim") -- Comment line
 	use("kyazdani42/nvim-web-devicons") -- Icons
-	use("nvim-tree/nvim-tree.lua") -- Nvim Tree
+	-- use("nvim-tree/nvim-tree.lua") -- Nvim Tree
 	use("norcalli/nvim-colorizer.lua") -- colors
 	use({ "shortcuts/no-neck-pain.nvim", tag = "*" }) -- no neck pain
 	use("ThePrimeagen/harpoon") -- Harpoon
@@ -48,8 +48,9 @@ return require("packer").startup(function(use)
 	use("vim-test/vim-test")
 
 	-- Telescope
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
+	use({ "nvim-telescope/telescope-file-browser.nvim" })
 
 	-- Autocomplete
 	use("hrsh7th/nvim-cmp") -- completion plugin
