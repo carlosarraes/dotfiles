@@ -16,6 +16,7 @@ bind("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
 bind("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
 bind("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
+bind("n", "<leader>b", "<C-^>", opts) -- next buffer
 
 -- Tabs
 bind("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
