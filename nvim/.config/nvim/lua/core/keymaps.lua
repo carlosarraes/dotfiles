@@ -6,6 +6,7 @@ local opts = { noremap = true, silent = true }
 bind("n", "<C-s>", ":w<CR>", opts)
 bind("n", "<C-z>", "u", opts)
 bind("n", "<leader>nh", ":nohl<CR>", opts)
+bind("n", "<CR>", ":", opts)
 
 -- Increment/decrement numbers
 bind("n", "<leader>=", "<C-a>", opts) -- increment
