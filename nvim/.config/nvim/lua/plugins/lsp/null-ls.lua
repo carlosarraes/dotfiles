@@ -15,11 +15,16 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
 	-- setup formatters & linters
 	sources = {
-		-- formatting.eslint, -- js/ts formatter
-		formatting.prettierd, -- js/ts formatter
-		formatting.stylua, -- lua formatter
 		formatting.gofumpt, -- go formatter
-		diagnostics.eslint_d, -- js/ts formatter
+		formatting.stylua, -- lua formatter
+		formatting.prettierd, -- js/ts formatter
+		-- formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
+		diagnostics.eslint_d.with({ -- js/ts linter
+			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
+			condition = function(utils)
+				return utils.root_has_file(".eslintrc.*") -- change file extension if you use something else
+			end,
+		}),
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)
