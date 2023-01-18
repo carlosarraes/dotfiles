@@ -7,6 +7,7 @@ function backups
   cp -r ~/.config/picom/ ~/dotfiles/picom/.config/ # rofi backup
   cp -r ~/.config/alacritty/ ~/dotfiles/alacritty/.config/ # rofi backup
   cp -r ~/.config/i3/ ~/dotfiles/i3/.config/ # rofi backup
+  cp -r ~/.config/awesome/ ~/dotfiles/awesome/.config/ # awesome backup
   cp ~/.zshrc ~/dotfiles/zsh/ # zsh backup
   cp ~/.tmux.conf ~/dotfiles/tmux/ # tmux backup
   cp ~/.config/starship.toml ~/dotfiles/starship/.config/ # starship backup
