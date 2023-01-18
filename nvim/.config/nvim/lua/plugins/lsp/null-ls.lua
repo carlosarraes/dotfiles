@@ -18,6 +18,7 @@ null_ls.setup({
 		formatting.gofumpt, -- go formatter
 		formatting.stylua, -- lua formatter
 		formatting.prettierd, -- js/ts formatter
+		diagnostics.golangci_lint, -- go linter
 		-- formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
 		diagnostics.eslint_d.with({ -- js/ts linter
 			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
