@@ -6,7 +6,6 @@ local opts = { noremap = true, silent = true }
 bind("n", "<C-s>", ":w<CR>", opts)
 bind("n", "<C-z>", "u", opts)
 bind("n", "<leader>nh", ":nohl<CR>", opts)
-bind("n", "<CR>", ":", opts)
 
 -- Increment/decrement numbers
 bind("n", "<leader>=", "<C-a>", opts) -- increment
@@ -69,6 +68,7 @@ bind("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers
 bind("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags
 
 -- telescope git commands (not on youtube nvim video, opts)
+bind("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
 bind("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
 bind("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>", opts) -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
 bind("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts) -- list git branches (use <cr> to checkout) ["gb" for git branch]
