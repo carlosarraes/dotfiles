@@ -572,3 +572,12 @@ beautiful.useless_gap = 2
 -- Autostart
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --restore")
+
+-- Garbage Collector
+collectgarbage("setpause", 160)
+collectgarbage("setstepmul", 400)
+
+gears.timer.start_new(10, function()
+	collectgarbage("step", 20000)
+	return true
+end)
