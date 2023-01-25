@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
 	bind("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 	bind("n", "gd", vim.lsp.buf.definition, opts) -- show definition
 	bind("n", "gD", "<cmd>Lspsaga peek_definition<CR>") -- peek definition
-	bind("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show references
+	bind("n", "gr", vim.lsp.buf.references, opts) -- show references
 	bind("n", "gi", vim.lsp.buf.implementation, opts) -- go to implementation
 	bind("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
 	bind("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename

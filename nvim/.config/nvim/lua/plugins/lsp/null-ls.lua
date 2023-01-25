@@ -20,6 +20,7 @@ null_ls.setup({
 		-- formatting.prettierd, -- js/ts formatter
 		formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
 		diagnostics.golangci_lint, -- go linter
+		-- diagnostics.eslint_d, -- go linter
 		diagnostics.eslint_d.with({ -- js/ts linter
 			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
 			condition = function(utils)
