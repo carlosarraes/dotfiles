@@ -66,6 +66,13 @@ bind("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in 
 bind("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
 bind("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
 bind("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags
+bind("n", "<leader>fm", "<cmd>Telescope marks<cr>", opts) -- list all marks
+bind("n", "<leader>ft", "<cmd>Telescope tags<cr>", opts) -- list all tags
+bind("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", opts) -- list recently opened files
+bind("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", opts) -- list all diagnostics
+bind("n", "<leader>dc", "<cmd>Telescope command_history<cr>", opts) -- list all commands
+bind("n", "<leader>dk", "<cmd>Telescope keymaps<cr>", opts) -- list all keymaps
+bind("n", "<leader>dv", "<cmd>Telescope vim_options<cr>", opts) -- list all vim options
 
 -- telescope git commands (not on youtube nvim video, opts)
 bind("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
