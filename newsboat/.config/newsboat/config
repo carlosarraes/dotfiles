@@ -5,10 +5,10 @@ external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
 bind-key j down
 bind-key k up
-bind-key j next articlelist
-bind-key k prev articlelist
-bind-key J next-feed articlelist
-bind-key K prev-feed articlelist
+bind-key K next articlelist
+bind-key J prev articlelist
+bind-key k next-feed articlelist
+bind-key j prev-feed articlelist
 bind-key G end
 bind-key g home
 bind-key d pagedown
