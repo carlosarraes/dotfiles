@@ -1,5 +1,4 @@
 local opt = vim.opt
-local cmd = vim.cmd
 
 -- Line numbers
 opt.relativenumber = true
@@ -17,6 +16,8 @@ opt.wrap = false
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
+opt.hlsearch = true
+opt.incsearch = true
 
 -- Cursor
 opt.cursorline = true
@@ -38,4 +39,8 @@ opt.splitbelow = true
 
 -- QoL
 opt.iskeyword:append("-")
-cmd("set noswapfile")
+opt.scrolloff = 8
+opt.swapfile = false
+opt.backup = false
+opt.undodir = vim.fn.stdpath("config") .. "/undodir"
+opt.undofile = true
