@@ -30,7 +30,7 @@ telescope.setup({
 		file_browser = {
 			theme = "dropdown",
 			-- disables netrw and use telescope-file-browser in its place
-			initial_mode = "normal",
+			initial_mode = "insert",
 			hijack_netrw = true,
 			grouped = true,
 			mappings = {
@@ -67,7 +67,7 @@ vim.keymap.set("n", "<leader>e", function()
 		hidden = true,
 		grouped = true,
 		previewer = false,
-		initial_mode = "normal",
+		initial_mode = "insert",
 		layout_config = { height = 40 },
 	})
 end)

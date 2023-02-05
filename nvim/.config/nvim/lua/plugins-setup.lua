@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-return require("lazy").setup({
+require("lazy").setup({
 	"nvim-lua/plenary.nvim",
 	-- Theme
 	"bluz71/vim-nightfly-guicolors",

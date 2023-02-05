@@ -5,7 +5,7 @@ local bind = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 bind("n", "<leader>a", mark.add_file, opts)
-bind("n", "<leader>h", ui.toggle_quick_menu, opts)
+bind("n", "<leader>w", ui.toggle_quick_menu, opts)
 
 bind("n", "<leader>1", function()
 	ui.nav_file(1)
