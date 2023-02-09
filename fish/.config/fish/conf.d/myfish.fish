@@ -9,7 +9,7 @@ alias conky='conky -c ~/.config/conky/mocha.conf'
 alias fixkeyboard='setxkbmap -rules evdev -model pc105+inet -layout us -variant intl'
 
 # NeoVim
-alias vi=nvim
+alias vi=vim
 alias vim=nvim
 alias setlint='nvim ~/.config/nvim/lua/plugins/lsp/null-ls.lua'
 
