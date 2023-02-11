@@ -8,6 +8,18 @@ alias lg=lazygit
 alias conky='conky -c ~/.config/conky/mocha.conf'
 alias fixkeyboard='setxkbmap -rules evdev -model pc105+inet -layout us -variant intl'
 
+# Docker
+alias cleardocker='sudo docker system prune -af'
+alias dockerls='sudo docker container ls -a'
+alias dockerils='sudo docker image ls -a'
+alias cdockerup='sudo docker-compose up -d'
+alias cdockerdown='sudo docker-compose down'
+alias cdockerlogs='sudo docker-compose logs -f'
+
+# Note
+alias screenoff='xrandr --output eDP --off'
+alias screenon='xrandr --output eDP --auto'
+
 # NeoVim
 alias vi=vim
 alias vim=nvim
