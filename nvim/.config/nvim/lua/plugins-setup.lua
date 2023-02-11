@@ -76,4 +76,5 @@ require("lazy").setup({
 	-- git integration
 	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 	"tpope/vim-fugitive", -- fugitive
+	"gbprod/yanky.nvim", -- yanky
 })
