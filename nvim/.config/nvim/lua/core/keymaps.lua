@@ -44,6 +44,14 @@ bind("v", "<leader>d", '"_d', opts)
 bind("n", "<leader>d", '"_d', opts)
 bind("n", "x", '"_x', opts)
 
+-- Yanky
+bind({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+bind({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+bind({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+bind({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+bind("n", "<c-n>", "<Plug>(YankyCycleForward)")
+bind("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+
 ----------------------
 -- Plugin Keybinds
 ----------------------
@@ -73,6 +81,7 @@ bind("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", opts) -- list all diag
 bind("n", "<leader>dc", "<cmd>Telescope command_history<cr>", opts) -- list all commands
 bind("n", "<leader>dk", "<cmd>Telescope keymaps<cr>", opts) -- list all keymaps
 bind("n", "<leader>dv", "<cmd>Telescope vim_options<cr>", opts) -- list all vim options
+bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list yanks
 
 -- telescope git commands (not on youtube nvim video, opts)
 bind("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
