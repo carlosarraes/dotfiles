@@ -9,12 +9,12 @@ alias conky='conky -c ~/.config/conky/mocha.conf'
 alias fixkeyboard='setxkbmap -rules evdev -model pc105+inet -layout us -variant intl'
 
 # Docker
-alias cleardocker='sudo docker system prune -af'
-alias dockerls='sudo docker container ls -a'
-alias dockerils='sudo docker image ls -a'
-alias cdockerup='sudo docker-compose up -d'
-alias cdockerdown='sudo docker-compose down'
-alias cdockerlogs='sudo docker-compose logs -f'
+alias cleardocker='docker system prune -af'
+alias dockerls='docker container ls -a'
+alias dockerils='docker image ls -a'
+alias cdockerup='docker-compose up -d'
+alias cdockerdown='docker-compose down'
+alias cdockerlogs='docker-compose logs -f'
 
 # Note
 alias screenoff='xrandr --output eDP --off'
