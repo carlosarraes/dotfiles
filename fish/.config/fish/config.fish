@@ -29,5 +29,7 @@ function theme
   set -U fish_pager_color_description 6c7086
 end
 
+set -x OPENAI_API_KEY (cat ~/.config/fish/chatkey.txt)
+
 starship init fish | source
 zoxide init fish | source
