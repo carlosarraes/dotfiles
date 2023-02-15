@@ -72,6 +72,14 @@ require("lazy").setup({
 			"windwp/nvim-ts-autotag",
 		},
 	},
+	{
+		"jackMort/ChatGPT.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	},
 	-- Auto Closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 	-- git integration

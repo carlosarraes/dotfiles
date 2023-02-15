@@ -83,6 +83,10 @@ bind("n", "<leader>dk", "<cmd>Telescope keymaps<cr>", opts) -- list all keymaps
 bind("n", "<leader>dv", "<cmd>Telescope vim_options<cr>", opts) -- list all vim options
 bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list yanks
 
+-- ChatGPT
+bind("n", "<leader>cg", "<cmd>ChatGPT<cr>", opts) -- open chatgpt window
+bind("v", "<leader>cg", "<cmd>ChatGPTEditWithInstructions<cr>", opts) -- open chatgpt editwithinstructions window
+
 -- telescope git commands (not on youtube nvim video, opts)
 bind("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
 bind("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
