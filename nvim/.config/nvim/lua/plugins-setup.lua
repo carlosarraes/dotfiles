@@ -44,7 +44,7 @@ require("lazy").setup({
 	"hrsh7th/cmp-buffer", -- source for text in buffer
 	"hrsh7th/cmp-path", -- source for file system paths
 	-- "github/copilot.vim", -- Copilot
-	"zbirenbaum/copilot.lua", -- Copilot Lua
+	{ "zbirenbaum/copilot.lua", lazy = true }, -- Copilot Lua
 	-- Snippets
 	"L3MON4D3/LuaSnip", -- snippet engine
 	"saadparwaiz1/cmp_luasnip", -- for autocompletion
@@ -86,4 +86,6 @@ require("lazy").setup({
 	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 	"tpope/vim-fugitive", -- fugitive
 	"gbprod/yanky.nvim", -- yanky
+	"tpope/vim-dadbod",
+	"kristijanhusak/vim-dadbod-ui",
 })

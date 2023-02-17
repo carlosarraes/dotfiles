@@ -82,10 +82,17 @@ bind("n", "<leader>dc", "<cmd>Telescope command_history<cr>", opts) -- list all 
 bind("n", "<leader>dk", "<cmd>Telescope keymaps<cr>", opts) -- list all keymaps
 bind("n", "<leader>dv", "<cmd>Telescope vim_options<cr>", opts) -- list all vim options
 bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list yanks
+bind("n", "<leader>fa", "<cmd>Telescope lsp_code_actions<cr>", opts) -- list code actions
 
 -- ChatGPT
 bind("n", "<leader>cg", "<cmd>ChatGPT<cr>", opts) -- open chatgpt window
 bind("v", "<leader>cg", "<cmd>ChatGPTEditWithInstructions<cr>", opts) -- open chatgpt editwithinstructions window
+
+-- Dadbod
+bind("n", "<leader>du", "<cmd>DBUIToggle<cr>", opts) -- open dadbod ui
+bind("n", "<leader>df", "<cmd>DBUIFindBuffer<cr>", opts)
+bind("n", "<leader>dr", "<cmd>DBUIRenameBuffer<cr>", opts)
+bind("n", "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", opts)
 
 -- telescope git commands (not on youtube nvim video, opts)
 bind("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
