@@ -4,7 +4,8 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias logout='qdbus org.kde.ksmserver /KSMServer logout 1 3 3'
-alias lg=lazygit
+alias lzg=lazygit
+alias lzd='sudo lazydocker'
 alias conky='conky -c ~/.config/conky/mocha.conf'
 alias fixkeyboard='setxkbmap -rules evdev -model pc105+inet -layout us -variant intl'
 
@@ -24,8 +25,8 @@ alias screenoff='xrandr --output eDP --off'
 alias screenon='xrandr --output eDP --auto'
 
 # NeoVim
-alias vi=vim
-alias vim=nvim
+alias vi='nvim'
+alias vim='nvim'
 alias setlint='nvim ~/.config/nvim/lua/plugins/lsp/null-ls.lua'
 
 # ls
