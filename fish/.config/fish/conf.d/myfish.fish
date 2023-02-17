@@ -16,6 +16,9 @@ alias cdockerup='docker-compose up -d'
 alias cdockerdown='docker-compose down'
 alias cdockerlogs='docker-compose logs -f'
 
+# OpenSSH
+alias connectplex='ssh plex@192.168.15.45'
+
 # Note
 alias screenoff='xrandr --output eDP --off'
 alias screenon='xrandr --output eDP --auto'
