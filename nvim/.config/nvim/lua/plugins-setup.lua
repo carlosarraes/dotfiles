@@ -27,8 +27,7 @@ require("lazy").setup({
 	"numToStr/Comment.nvim", -- Comment line
 	"kyazdani42/nvim-web-devicons", -- Icons
 	-- "nvim-tree/nvim-tree.lua", -- Nvim Tree
-	-- "norcalli/nvim-colorizer.lua", -- colors
-	"NvChad/nvim-colorizer.lua",
+	"norcalli/nvim-colorizer.lua", -- colors
 	{ "shortcuts/no-neck-pain.nvim", version = "*" }, -- no neck pain
 	"ThePrimeagen/harpoon", -- Harpoon
 	-- Lualine

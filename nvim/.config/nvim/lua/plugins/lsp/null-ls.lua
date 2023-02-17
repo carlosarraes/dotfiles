@@ -17,16 +17,16 @@ null_ls.setup({
 	sources = {
 		formatting.gofumpt, -- go formatter
 		formatting.stylua, -- lua formatter
-		-- formatting.prettierd, -- js/ts formatter
-		formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
+		formatting.prettierd, -- js/ts formatter
+		-- formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
 		diagnostics.golangci_lint, -- go linter
-		-- diagnostics.eslint_d, -- js linter
-		diagnostics.eslint_d.with({ -- js/ts linter
-			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
-			condition = function(utils)
-				return utils.root_has_file({ ".eslintrc.json", ".eslintrc.cjs" }) -- change file extension if you use something else
-			end,
-		}),
+		diagnostics.eslint_d, -- js linter
+		-- diagnostics.eslint_d.with({ -- js/ts linter
+		-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
+		-- condition = function(utils)
+		-- return utils.root_has_file({ ".eslintrc.json", ".eslintrc.cjs" }) -- change file extension if you use something else
+		-- end,
+		-- }),
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)

@@ -81,8 +81,7 @@ bind("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", opts) -- list all diag
 bind("n", "<leader>dc", "<cmd>Telescope command_history<cr>", opts) -- list all commands
 bind("n", "<leader>dk", "<cmd>Telescope keymaps<cr>", opts) -- list all keymaps
 bind("n", "<leader>dv", "<cmd>Telescope vim_options<cr>", opts) -- list all vim options
-bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list yanks
-bind("n", "<leader>fa", "<cmd>Telescope lsp_code_actions<cr>", opts) -- list code actions
+bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list all yanks
 
 -- ChatGPT
 bind("n", "<leader>cg", "<cmd>ChatGPT<cr>", opts) -- open chatgpt window
