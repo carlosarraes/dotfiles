@@ -10,6 +10,12 @@
           "typescriptreact"
         ],
         "path": "./jtrs.json"
+      },
+      {
+        "language": [
+          "java"
+        ],
+        "path": "./java.json"
       }
     ]
   }

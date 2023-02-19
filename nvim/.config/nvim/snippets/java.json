@@ -1,0 +1,12 @@
+{
+  "sysout": {
+    "prefix": "stout",
+    "body": ["System.out.println($0);"],
+    "description": "Print to standard out"
+  },
+  "main": {
+    "prefix": "psvm",
+    "body": ["public static void main(String[] args) {", "\t$0", "}"],
+    "description": "Public static main method"
+  }
+}

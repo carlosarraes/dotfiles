@@ -87,4 +87,5 @@ require("lazy").setup({
 	"gbprod/yanky.nvim", -- yanky
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-ui",
+	"mfussenegger/nvim-jdtls",
 })
