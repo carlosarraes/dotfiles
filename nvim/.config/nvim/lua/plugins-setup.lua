@@ -88,4 +88,5 @@ require("lazy").setup({
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-ui",
 	"mfussenegger/nvim-jdtls",
+	"christoomey/vim-tmux-navigator",
 })
