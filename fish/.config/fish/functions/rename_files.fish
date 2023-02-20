@@ -23,7 +23,7 @@ for file in $files
   set extension (echo $file | awk -F . '{if (NF>1) {print $NF}}')
 
   # Construct new name with increment
-  set new_file "$new_name $increment"
+  set new_file "$new_name$increment"
   if test -n $extension
     set new_file "$new_file.$extension"
   end
