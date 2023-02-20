@@ -35,18 +35,21 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- set keybinds
-	bind("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 	bind("n", "gd", vim.lsp.buf.definition, opts) -- show definition
-	bind("n", "gD", "<cmd>Lspsaga peek_definition<CR>") -- peek definition
+	bind("n", "gD", vim.lsp.buf.declaration, opts) -- show declaration
 	bind("n", "gr", vim.lsp.buf.references, opts) -- show references
 	bind("n", "gi", vim.lsp.buf.implementation, opts) -- go to implementation
-	bind("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
+	bind("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+	bind("n", "<space>ca", vim.lsp.buf.code_action, opts)
+	bind("n", "<space>rn", vim.lsp.buf.rename, opts)
+	bind("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+	bind("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+
+	-- LspSaga
+	bind({ "n", "v" }, "<leader>sca", "<cmd>Lspsaga code_action<CR>")
+	bind("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 	bind("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-	bind("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	bind("n", "<leader>c", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	bind("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	bind("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	bind("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- show documentation for what is under cursor
+	bind("n", "<leader>grn", "<cmd>Lspsaga rename ++project<CR>", opts) -- smart rename
 	bind({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>") -- term
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
@@ -66,15 +69,16 @@ local on_attach = function(client, bufnr)
 
 			vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
 		end
-		map("n", "<leader>Co", jdtls.organize_imports, "Organize Imports")
-		map("n", "<leader>Cv", jdtls.extract_variable, "Extract Variable")
-		map("n", "<leader>Cc", jdtls.extract_constant, "Extract Constant")
-		map("n", "<leader>Ct", jdtls.test_nearest_method, "Test Method")
-		map("n", "<leader>CT", jdtls.test_class, "Test Class")
-		map("n", "<leader>Cu", "<Cmd>JdtUpdateConfig<CR>", "Update Config")
-		map("v", "<leader>Cv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable")
-		map("v", "<leader>Cc", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant")
-		map("v", "<leader>Cm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method")
+		map("n", "<leader>jo", jdtls.organize_imports, opts)
+		map("n", "<leader>jv", jdtls.extract_variable, opts)
+		map("n", "<leader>jc", jdtls.extract_constant, opts)
+		map("n", "<leader>jm", jdtls.extract_method, opts)
+		map("n", "<leader>jt", jdtls.test_nearest_method, opts)
+		map("n", "<leader>jT", jdtls.test_class, opts)
+		map("n", "<leader>ju", "<Cmd>JdtUpdateConfig<CR>", opts)
+		map("v", "<leader>jv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", opts)
+		map("v", "<leader>jc", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", opts)
+		map("v", "<leader>jm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
 	end
 end
 
