@@ -79,6 +79,7 @@ require("lazy").setup({
 			"nvim-telescope/telescope.nvim",
 		},
 	},
+	"nvim-tree/nvim-tree.lua",
 	-- Auto Closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 	-- git integration
