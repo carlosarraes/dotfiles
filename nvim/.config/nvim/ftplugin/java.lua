@@ -137,6 +137,11 @@ local config = {
 						name = "JavaSE-17",
 						path = "/usr/lib/jvm/java-17-openjdk",
 					},
+					{
+						name = "JavaSE-19",
+						path = "/usr/lib/jvm/java-19-openjdk",
+						default = true,
+					},
 				},
 			},
 			maven = {

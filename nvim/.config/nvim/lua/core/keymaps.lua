@@ -60,7 +60,7 @@ bind("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 bind("n", "<leader>sm", ":MaximizerToggle<CR>", opts) -- toggle split window maximization
 
 -- nvim-tree
--- bind("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
+bind("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
 
 -- vim-tests
 bind("n", "<leader>tt", ":TestFile<CR>", opts) -- run all tests in current file
@@ -76,7 +76,7 @@ bind("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers
 bind("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags
 bind("n", "<leader>fm", "<cmd>Telescope marks<cr>", opts) -- list all marks
 bind("n", "<leader>ft", "<cmd>Telescope tags<cr>", opts) -- list all tags
-bind("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", opts) -- list recently opened files
+bind("n", "<leader>fr", "<cmd>Telescope registers<cr>", opts) -- list recently opened files
 bind("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", opts) -- list all diagnostics
 bind("n", "<leader>dc", "<cmd>Telescope command_history<cr>", opts) -- list all commands
 bind("n", "<leader>dk", "<cmd>Telescope keymaps<cr>", opts) -- list all keymaps
