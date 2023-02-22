@@ -34,3 +34,8 @@ set -x OPENAI_API_KEY (cat ~/.config/fish/chatkey.txt)
 alias rename_files "~/.config/fish/functions/rename_files.fish"
 starship init fish | source
 zoxide init fish | source
+
+# pnpm
+set -gx PNPM_HOME "/home/seti/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
