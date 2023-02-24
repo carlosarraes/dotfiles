@@ -60,7 +60,7 @@ bind("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 bind("n", "<leader>sm", ":MaximizerToggle<CR>", opts) -- toggle split window maximization
 
 -- nvim-tree
-bind("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
+bind("n", "<leader>e", ":NvimTreeFindFileToggle<CR>", opts) -- toggle file explorer
 
 -- vim-tests
 bind("n", "<leader>tt", ":TestFile<CR>", opts) -- run all tests in current file
@@ -102,3 +102,7 @@ bind("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts) -- list current c
 
 -- restart lsp server (not on youtube nvim video, opts)
 bind("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+-- My Binds
+bind("n", "gt", ":lua Go_to_test_file()<CR>", opts)
+bind("n", "<leader>ct", ":lua Create_test_file()<CR>", opts)
