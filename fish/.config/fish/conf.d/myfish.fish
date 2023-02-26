@@ -5,6 +5,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias logout='qdbus org.kde.ksmserver /KSMServer logout 1 3 3'
 alias lzg=lazygit
+alias gui=gitui
 alias lzd='sudo lazydocker'
 alias conky='conky -c ~/.config/conky/mocha.conf'
 alias fixkeyboard='setxkbmap -rules evdev -model pc105+inet -layout us -variant intl'
