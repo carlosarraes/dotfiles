@@ -24,17 +24,6 @@ if root_dir == "" then
 	return
 end
 
-local bundles = {}
-local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
-vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar"), "\n"))
-vim.list_extend(
-	bundles,
-	vim.split(
-		vim.fn.glob(mason_path .. "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
-		"\n"
-	)
-)
-
 local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
@@ -137,11 +126,6 @@ local config = {
 						name = "JavaSE-17",
 						path = "/usr/lib/jvm/java-17-openjdk",
 					},
-					{
-						name = "JavaSE-19",
-						path = "/usr/lib/jvm/java-19-openjdk",
-						default = true,
-					},
 				},
 			},
 			maven = {
@@ -195,9 +179,6 @@ local config = {
 
 	flags = {
 		allow_incremental_sync = true,
-	},
-	init_options = {
-		bundles = bundles,
 	},
 	capabilities = jcapabilities,
 	on_attach = on_attach,
