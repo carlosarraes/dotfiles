@@ -67,7 +67,7 @@ colors:
 theme: Catppuccin
 
 window:
-  opacity: 0.95 #From 0.00 to 1.00
+  opacity: 1.00 #From 0.00 to 1.00
 
 # Import additional configuration files
 #
