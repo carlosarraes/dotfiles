@@ -106,3 +106,4 @@ bind("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if ne
 -- My Binds
 bind("n", "gt", ":lua Go_to_test_file()<CR>", opts)
 bind("n", "<leader>ct", ":lua Create_test_file()<CR>", opts)
+bind("n", "<f9>", ":!./gradlew build<CR>", opts)
