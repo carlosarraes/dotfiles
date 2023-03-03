@@ -1,6 +1,8 @@
 set fish_greeting
 set TERM "xterm-256color"
 
+set -x EDITOR nvim
+
 function theme
   set -U fish_color_normal cdd6f4
   set -U fish_color_command 89b4fa
@@ -35,7 +37,8 @@ alias rename_files "~/.config/fish/functions/rename_files.fish"
 starship init fish | source
 zoxide init fish | source
 
+set PATH $HOME/.cargo/bin $PATH
+
 # pnpm
 set -gx PNPM_HOME "/home/seti/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
-# pnpm end
