@@ -4,6 +4,7 @@ function Go_to_test_file()
 		["java"] = "%sTest.java",
 		["typescript"] = "%s.test.ts",
 		["javascript"] = "%s.test.js",
+		["go"] = "%s_test.go",
 	}
 
 	local convention = conventions[filetype]
