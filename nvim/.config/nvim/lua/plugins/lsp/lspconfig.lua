@@ -49,48 +49,13 @@ local on_attach = function(client, bufnr)
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then
 		bind("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-		bind("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
-		bind("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
-	end
-
-	-- jdtls specific keymaps
-	if client.name == "jdtls" then
-		local _, _ = pcall(vim.lsp.codelens.refresh)
-		local map = function(mode, lhs, rhs, desc)
-			if desc then
-				desc = desc
-			end
-
-			vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
-		end
-		map("n", "<leader>jo", jdtls.organize_imports, opts)
-		map("n", "<leader>jv", jdtls.extract_variable, opts)
-		map("n", "<leader>jc", jdtls.extract_constant, opts)
-		map("n", "<leader>jm", jdtls.extract_method, opts)
-		map("n", "<leader>jt", jdtls.test_nearest_method, opts)
-		map("n", "<leader>jT", jdtls.test_class, opts)
-		map("n", "<leader>ju", "<Cmd>JdtUpdateConfig<CR>", opts)
-		map("v", "<leader>jv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", opts)
-		map("v", "<leader>jc", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", opts)
-		map("v", "<leader>jm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
+		bind("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports
+		bind("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables
 	end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
-
-local jcapabilities = {
-	workspace = {
-		configuration = true,
-	},
-	textDocument = {
-		completion = {
-			completionItem = {
-				snippetSupport = true,
-			},
-		},
-	},
-}
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
