@@ -7,6 +7,7 @@ alias logout='qdbus org.kde.ksmserver /KSMServer logout 1 3 3'
 alias lzg=lazygit
 alias gui=gitui
 alias lzd='sudo lazydocker'
+alias pn=pnpm
 alias conky='conky -c ~/.config/conky/mocha.conf'
 
 # Fixes and Installers
@@ -30,8 +31,6 @@ alias screenoff='xrandr --output eDP --off'
 alias screenon='xrandr --output eDP --auto'
 
 # NeoVim
-alias vi='nvim'
-alias vim='nvim'
 alias setlint='nvim ~/.config/nvim/lua/plugins/lsp/null-ls.lua'
 alias setcopilot='nvim ~/.config/nvim/lua/plugins/copilot.lua'
 
