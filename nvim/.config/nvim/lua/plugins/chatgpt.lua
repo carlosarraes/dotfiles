@@ -48,7 +48,7 @@ chatgpt.setup({
 		},
 	},
 	openai_params = {
-		model = "text-davinci-003",
+		model = "gpt-3.5-turbo",
 		frequency_penalty = 0,
 		presence_penalty = 0,
 		max_tokens = 300,
