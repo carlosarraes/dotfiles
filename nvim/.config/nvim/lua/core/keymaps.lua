@@ -86,6 +86,7 @@ bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list all yan
 -- ChatGPT
 bind("n", "<leader>cg", "<cmd>ChatGPT<cr>", opts) -- open chatgpt window
 bind("v", "<leader>cg", "<cmd>ChatGPTEditWithInstructions<cr>", opts) -- open chatgpt editwithinstructions window
+bind("n", "<leader>cs", "<cmd>ChatGPTActAs<cr>", opts) -- send chatgpt message
 
 -- Dadbod
 bind("n", "<leader>du", "<cmd>DBUIToggle<cr>", opts) -- open dadbod ui
