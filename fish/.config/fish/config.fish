@@ -42,3 +42,6 @@ set PATH $HOME/.cargo/bin $PATH
 # pnpm
 set -gx PNPM_HOME "/home/seti/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/carraes/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/carraes/Downloads/google-cloud-sdk/path.fish.inc'; end
