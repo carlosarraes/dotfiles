@@ -45,3 +45,10 @@ set -gx PATH "$PNPM_HOME" $PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/carraes/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/carraes/Downloads/google-cloud-sdk/path.fish.inc'; end
+
+# pnpm
+set -gx PNPM_HOME "/home/seti/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

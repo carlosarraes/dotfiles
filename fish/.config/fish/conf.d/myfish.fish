@@ -5,9 +5,10 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias logout='qdbus org.kde.ksmserver /KSMServer logout 1 3 3'
 alias lzg=lazygit
+alias lzd=lazydocker
 alias gui=gitui
 alias lzd='sudo lazydocker'
-alias pn=pnpm
+alias pm=pnpm
 alias conky='conky -c ~/.config/conky/mocha.conf'
 
 # Fixes and Installers
@@ -44,4 +45,5 @@ alias ld='exa -ls mod --group-directories-first --color=always'
 alias lda='exa -als mod --group-directories-first --color=always'
 
 # Go
-alias ghtml='go test -coverprofile=coverage.out && go tool cover -html=coverage.out'
+alias coverago='go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out'
+alias nodego='nodemon --exec go run main.go --signal SIGTERM'
