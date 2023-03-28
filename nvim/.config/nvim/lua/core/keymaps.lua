@@ -16,7 +16,10 @@ bind("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
 bind("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
 bind("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
-bind("n", "<leader>b", "<C-^>", opts) -- next buffer
+bind("n", "<leader>bb", "<C-^>", opts) -- flip buffer
+bind("n", "<leader>k", ":bnext<CR>", opts) -- next buffer
+bind("n", "<leader>l", ":bprev<CR>", opts) -- previous buffer
+bind("n", "<leader>bd", ":bdelete<CR>", opts)
 
 -- Tabs
 bind("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
@@ -105,6 +108,6 @@ bind("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts) -- list current c
 bind("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
 -- My Binds
-bind("n", "gt", ":lua Go_to_test_file()<CR>", opts)
+bind("n", "<leader>gt", ":lua Go_to_test_file()<CR>", opts)
 bind("n", "<leader>ct", ":lua Create_test_file()<CR>", opts)
 bind("n", "<f9>", ":!./gradlew build<CR>", opts)
