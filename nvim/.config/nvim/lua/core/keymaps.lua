@@ -104,6 +104,14 @@ bind("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>", opts) -- list git co
 bind("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts) -- list git branches (use <cr> to checkout) ["gb" for git branch]
 bind("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts) -- list current changes per file with diff preview ["gs" for git status]
 
+-- Git - dv in fugitive
+bind("n", "<leader>gd", "<cmd>Gvdiffsplit<cr>", opts)
+bind("n", "gu", "<cmd>diffget //2<cr>", opts) -- get the upper version of a diff
+bind("n", "gh", "<cmd>diffget //3<cr>", opts) -- get the lower version of a diff
+
+-- Diffview
+bind("n", "D", ":DiffviewOpen<cr>", opts)
+
 -- restart lsp server (not on youtube nvim video, opts)
 bind("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
