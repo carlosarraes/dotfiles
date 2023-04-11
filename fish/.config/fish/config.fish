@@ -39,6 +39,9 @@ zoxide init fish | source
 
 set PATH $HOME/.cargo/bin $PATH
 
+# tmuxifier
+source ~/.tmuxifier/init.fish
+
 # pnpm
 set -gx PNPM_HOME "/home/seti/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH

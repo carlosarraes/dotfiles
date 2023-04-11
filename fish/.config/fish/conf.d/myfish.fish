@@ -9,6 +9,7 @@ alias lzd=lazydocker
 alias gui=gitui
 alias lzd='sudo lazydocker'
 alias pm=pnpm
+alias px=pnpx
 alias conky='conky -c ~/.config/conky/mocha.conf'
 
 # Fixes and Installers
