@@ -69,6 +69,7 @@ end
 lspconfig["html"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	filetypes = { "html", "gohtml" },
 })
 
 -- configure typescript server with plugin
@@ -155,4 +156,9 @@ lspconfig["rust_analyzer"].setup({
 		"stable",
 		"rust-analyzer",
 	},
+})
+
+lspconfig["volar"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
