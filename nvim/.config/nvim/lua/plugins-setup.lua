@@ -90,7 +90,6 @@ require("lazy").setup({
 	"kristijanhusak/vim-dadbod-ui",
 	"mfussenegger/nvim-jdtls",
 	"christoomey/vim-tmux-navigator",
-	{ "sindrets/diffview.nvim", dependencies = {
-		"nvim-lua/plenary.nvim",
-	} },
+	{ "sindrets/diffview.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "akinsho/bufferline.nvim", version = "*" },
 })

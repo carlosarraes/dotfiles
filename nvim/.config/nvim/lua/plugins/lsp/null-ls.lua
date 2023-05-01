@@ -16,6 +16,7 @@ null_ls.setup({
 		formatting.gofumpt, -- go formatter
 		formatting.goimports, -- go formatter
 		formatting.stylua, -- lua formatter
+		formatting.csharpier, -- c# formatter
 		formatting.prettierd, -- js/ts formatter
 		formatting.google_java_format, -- java formatter
 		-- formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well

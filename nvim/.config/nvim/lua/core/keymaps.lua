@@ -16,9 +16,11 @@ bind("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
 bind("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
 bind("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
+
+-- Buffer management
 bind("n", "<leader>bb", "<C-^>", opts) -- flip buffer
-bind("n", "<leader>k", ":bnext<CR>", opts) -- next buffer
-bind("n", "<leader>l", ":bprev<CR>", opts) -- previous buffer
+bind("n", "<leader><Left>", ":bprev<CR>", opts) -- previous buffer
+bind("n", "<leader><Right>", ":bnext<CR>", opts) -- next buffer
 bind("n", "<leader>bd", ":bdelete<CR>", opts)
 
 -- Tabs
@@ -80,7 +82,7 @@ bind("n", "<leader>fzf", function()
 end, opts) -- find string in current buffer
 bind("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
 bind("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
-bind("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
+bind("n", "<leader>bl", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
 bind("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags
 bind("n", "<leader>fm", "<cmd>Telescope marks<cr>", opts) -- list all marks
 bind("n", "<leader>ft", "<cmd>Telescope tags<cr>", opts) -- list all tags
