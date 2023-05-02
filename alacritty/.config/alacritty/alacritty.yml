@@ -164,9 +164,17 @@ env:
 #multiplier: 3
 # Font configuration
 font:
-  family: Hack Nerd Font Mono
-  style: Regular
-  size: 11.0
+  normal:
+    family: "Hack"
+    style: Regular
+
+  bold:
+    family: "Hack"
+    style: Bold
+
+  italic:
+    family: "Hack"
+    style: Italic
   # Normal (roman) font face
   #normal:
   # Font family
