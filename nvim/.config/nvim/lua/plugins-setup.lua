@@ -25,7 +25,7 @@ require("lazy").setup({
 	"tpope/vim-surround", -- Surrond like vs-code
 	"vim-scripts/ReplaceWithRegister", -- Use register for replacement grw
 	"numToStr/Comment.nvim", -- Comment line
-	"kyazdani42/nvim-web-devicons", -- Icons
+	"nvim-tree/nvim-web-devicons",
 	-- "nvim-tree/nvim-tree.lua", -- Nvim Tree
 	"norcalli/nvim-colorizer.lua", -- colors
 	{ "shortcuts/no-neck-pain.nvim", version = "*" }, -- no neck pain

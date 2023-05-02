@@ -22,6 +22,7 @@ bind("n", "<leader>bb", "<C-^>", opts) -- flip buffer
 bind("n", "<leader><Left>", ":bprev<CR>", opts) -- previous buffer
 bind("n", "<leader><Right>", ":bnext<CR>", opts) -- next buffer
 bind("n", "<leader>bd", ":bdelete<CR>", opts)
+bind("n", "<leader>bl", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
 
 -- Tabs
 bind("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
@@ -82,7 +83,7 @@ bind("n", "<leader>fzf", function()
 end, opts) -- find string in current buffer
 bind("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
 bind("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
-bind("n", "<leader>bl", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
+bind("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
 bind("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags
 bind("n", "<leader>fm", "<cmd>Telescope marks<cr>", opts) -- list all marks
 bind("n", "<leader>ft", "<cmd>Telescope tags<cr>", opts) -- list all tags
