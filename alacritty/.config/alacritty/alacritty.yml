@@ -164,6 +164,7 @@ env:
 #multiplier: 3
 # Font configuration
 font:
+  size: 11
   normal:
     family: "Hack"
     style: Regular
