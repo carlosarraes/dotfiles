@@ -37,7 +37,11 @@ alias rename_files "~/.config/fish/functions/rename_files.fish"
 starship init fish | source
 zoxide init fish | source
 
+# Existing PATH configuration
 set PATH $HOME/.cargo/bin $PATH
+
+# Add d2 to PATH
+set PATH $HOME/.local/bin $PATH
 
 # tmuxifier
 source ~/.tmuxifier/init.fish
