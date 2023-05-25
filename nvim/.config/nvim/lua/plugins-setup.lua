@@ -45,9 +45,8 @@ require("lazy").setup({
 			"nvim-telescope/telescope.nvim",
 		},
 	},
-	{
-		"folke/noice.nvim",
-	},
+	"folke/noice.nvim",
+	"kdheepak/lazygit.nvim",
 
 	-- Tests
 	"vim-test/vim-test",
