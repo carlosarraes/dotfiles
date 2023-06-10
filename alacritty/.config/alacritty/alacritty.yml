@@ -159,9 +159,9 @@ env:
 #scrolling:
 # Maximum number of lines in the scrollback buffer.
 # Specifying '0' will disable scrolling.
-#history: 10000
+history: 10000
 # Scrolling distance multiplier.
-#multiplier: 3
+multiplier: 3
 # Font configuration
 font:
   size: 11
@@ -481,7 +481,7 @@ font:
 #double_click: { threshold: 300 }
 #triple_click: { threshold: 300 }
 # If this is `true`, the cursor is temporarily hidden when typing.
-#hide_when_typing: false
+hide_when_typing: true
 # Hints
 #
 # Terminal hints can be used to find text or hyperlink in the visible part of
