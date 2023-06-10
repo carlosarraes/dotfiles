@@ -59,3 +59,10 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# workspace
+set -x SC_MAKE_FSPATH ~/ws/sc-make/assets/.sc-make/make
+set -x GIT_USER_NAME carlosarraes
+set -x GIT_USER_EMAIL carraeshb@gmail.com
+set -x GIT_USER_SSH_PUB ~/.ssh/carraes_github.pub
+set -Ua fish_user_paths (go env GOPATH)/bin $fish_user_paths
