@@ -7,6 +7,12 @@ export LANG=en_US.UTF-8
 # echo 'source ~/.bashrc' >> ~/.bash_profile
 plugins=(git)
 
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt INC_APPEND_HISTORY_TIME
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -41,3 +47,5 @@ export GOROOT="$HOME/.gobrew/current/go"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
