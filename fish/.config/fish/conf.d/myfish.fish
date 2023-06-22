@@ -20,9 +20,9 @@ alias setupnoto='sudo pacman -S $(pacman -Ssq "noto-fonts-*")'
 alias dclear='docker system prune -af'
 alias dls='docker container ls -a'
 alias dils='docker image ls -a'
-alias dcup='docker-compose up -d'
-alias dcdown='docker-compose down'
-alias dclogs='docker-compose logs -f'
+alias dcup='docker compose up -d'
+alias dcdown='docker compose down'
+alias dclogs='docker compose logs -f'
 
 # OpenSSH
 alias connectplex='ssh plex@192.168.15.45'
