@@ -99,6 +99,11 @@ require("lazy").setup({
 	"tpope/vim-fugitive", -- fugitive
 	{ "sindrets/diffview.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
+	-- DAPs
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+	"theHamsta/nvim-dap-virtual-text",
+	"leoluz/nvim-dap-go",
+
 	-- SQL
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-ui",
@@ -118,4 +123,7 @@ require("lazy").setup({
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 	},
+
+	-- Crystal
+	"vim-crystal/vim-crystal",
 })

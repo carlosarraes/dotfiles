@@ -21,7 +21,7 @@ bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 bind("n", "<leader>bb", "<C-^>", opts) -- flip buffer
 bind("n", "<leader><Left>", ":bprev<CR>", opts) -- previous buffer
 bind("n", "<leader><Right>", ":bnext<CR>", opts) -- next buffer
-bind("n", "<leader>bd", ":bdelete<CR>", opts)
+bind("n", "<leader>x", ":bdelete<CR>", opts)
 bind("n", "<leader>bl", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
 
 -- Tabs
@@ -89,7 +89,7 @@ bind("n", "<leader>fm", "<cmd>Telescope marks<cr>", opts) -- list all marks
 bind("n", "<leader>ft", "<cmd>Telescope tags<cr>", opts) -- list all tags
 bind("n", "<leader>fr", "<cmd>Telescope registers<cr>", opts) -- list recently opened files
 bind("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", opts) -- list all diagnostics
-bind("n", "<leader>dc", "<cmd>Telescope command_history<cr>", opts) -- list all commands
+bind("n", "<leader>dC", "<cmd>Telescope command_history<cr>", opts) -- list all commands
 bind("n", "<leader>dk", "<cmd>Telescope keymaps<cr>", opts) -- list all keymaps
 bind("n", "<leader>dv", "<cmd>Telescope vim_options<cr>", opts) -- list all vim options
 bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list all yanks
@@ -102,7 +102,6 @@ bind("n", "<leader>cs", "<cmd>ChatGPTActAs<cr>", opts) -- send chatgpt message
 -- Dadbod
 bind("n", "<leader>du", "<cmd>DBUIToggle<cr>", opts) -- open dadbod ui
 bind("n", "<leader>df", "<cmd>DBUIFindBuffer<cr>", opts)
-bind("n", "<leader>dr", "<cmd>DBUIRenameBuffer<cr>", opts)
 bind("n", "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", opts)
 
 -- telescope git commands (not on youtube nvim video, opts)
@@ -115,6 +114,12 @@ bind("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts) -- list current c
 bind("n", "<leader>gd", "<cmd>Gvdiffsplit<cr>", opts)
 bind("n", "gu", "<cmd>diffget //2<cr>", opts) -- get the upper version of a diff
 bind("n", "gh", "<cmd>diffget //3<cr>", opts) -- get the lower version of a diff
+
+-- Debugger
+bind("n", "<leader>dt", ":DapUiToggle<CR>", opts) -- toggle dap ui
+bind("n", "<leader>dc", ":DapContinue<CR>", opts) -- continue
+bind("n", "<leader>db", ":DapToggleBreakpoint<CR>", opts) -- stop
+bind("n", "<leader>dr", ":lua require('dapui').open({reset = true})<CR>", opts) -- restart
 
 -- Diffview
 bind("n", "D", ":DiffviewOpen<cr>", opts)
