@@ -15,8 +15,28 @@ if not setup then
 	return
 end
 
+local fb_actions = telescope.extensions.file_browser.actions
+
 telescope.setup({
+	extensions = {
+		file_browser = {
+			theme = "ivy",
+			hijack_netrw = true,
+			mappings = {
+				["i"] = {
+					["A"] = fb_actions.create,
+					["D"] = fb_actions.remove,
+					["Y"] = fb_actions.copy,
+					["M"] = fb_actions.move,
+					["R"] = fb_actions.rename,
+					["."] = fb_actions.toggle_hidden,
+					["<C-d>"] = fb_actions.goto_parent_dir,
+				},
+			},
+		},
+	},
 	defaults = {
+		grouped = true,
 		mappings = {
 			i = {
 				["<C-k>"] = actions.move_selection_previous, -- move to prev result
@@ -29,6 +49,7 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 telescope.load_extension("yank_history")
+telescope.load_extension("file_browser")
 
 local utils = require("yanky.utils")
 local mapping = require("yanky.telescope.mapping")

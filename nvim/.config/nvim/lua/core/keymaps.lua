@@ -66,7 +66,8 @@ bind("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 bind("n", "<leader>sm", ":MaximizerToggle<CR>", opts) -- toggle split window maximization
 
 -- nvim-tree
-bind("n", "<leader>e", ":NvimTreeFindFileToggle<CR>", opts) -- toggle file explorer
+-- bind("n", "<leader>e", ":NvimTreeFindFileToggle<CR>", opts) -- toggle file explorer
+bind("n", "<leader>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", opts) -- toggle file explorer
 
 -- vim-tests
 bind("n", "<leader>tt", ":TestFile<CR>", opts) -- run all tests in current file
