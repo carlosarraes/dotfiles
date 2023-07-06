@@ -21,6 +21,7 @@ null_ls.setup({
 		formatting.google_java_format, -- java formatter
 		formatting.black, -- python formatter
 		formatting.isort, -- python formatter
+		formatting.mix, -- elixir formatter
 		-- formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
 		diagnostics.flake8, -- python linter
 		diagnostics.golangci_lint, -- go linter
