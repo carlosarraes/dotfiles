@@ -115,6 +115,7 @@ keybinds clear-defaults=true {
       bind "Alt -" { Resize "Decrease"; }
       bind "Alt [" { PreviousSwapLayout; }
       bind "Alt ]" { NextSwapLayout; }
+      bind "Alt c" { SwitchToMode "Pane"; NewPane "Down"; SwitchToMode "Normal"; }
     }
     shared_except "normal" "locked" {
       bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -135,10 +136,10 @@ keybinds clear-defaults=true {
       bind "Ctrl t" { SwitchToMode "Tab"; }
     }
     shared_except "renametab" "locked" {
-      bind "Alt t" { SwitchToMode "RenameTab"; }
+      bind "Alt t" { SwitchToMode "RenameTab"; TabNameInput 0; }
     }
     shared_except "renamepane" "locked" {
-      bind "Alt a" { SwitchToMode "RenamePane"; }
+      bind "Alt a" { SwitchToMode "RenamePane"; PaneNameInput 0; }
     }
 }
 
