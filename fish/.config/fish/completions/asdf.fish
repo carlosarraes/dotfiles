@@ -1,0 +1,1 @@
+/home/carraes/.asdf/completions/asdf.fish
