@@ -66,3 +66,12 @@ set -x GIT_USER_NAME carlosarraes
 set -x GIT_USER_EMAIL carraeshb@gmail.com
 set -x GIT_USER_SSH_PUB ~/.ssh/carraes_github.pub
 set -Ua fish_user_paths (go env GOPATH)/bin $fish_user_paths
+
+# asdf
+source ~/.asdf/asdf.fish
+
+# Vi mode
+fish_vi_key_bindings
+
+# For Thunar:
+# alacritty --command fish -C "cd %f"
