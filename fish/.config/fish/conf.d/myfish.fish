@@ -35,6 +35,9 @@ alias screenon='xrandr --output eDP --auto'
 # NeoVim
 alias setlint='nvim ~/.config/nvim/lua/plugins/lsp/null-ls.lua'
 alias setcopilot='nvim ~/.config/nvim/lua/plugins/copilot.lua'
+alias v='nvim $(fzf)'
+alias vim='nvim'
+alias rvim='vim'
 
 # ls
 alias ls='exa -al --color=always --group-directories-first'
