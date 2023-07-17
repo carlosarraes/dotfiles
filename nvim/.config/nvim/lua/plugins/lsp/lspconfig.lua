@@ -21,6 +21,8 @@ if not typescript_setup then
 	return
 end
 
+local token_types = require("plugins.lsp.csharp-token")
+
 local bind = vim.keymap.set -- for conciseness
 
 -- enable keybinds only for when lsp server available
@@ -51,6 +53,18 @@ local on_attach = function(client, bufnr)
 		bind("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
 		bind("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports
 		bind("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables
+	end
+
+	-- omnisharp
+	if client.name == "omnisharp" then
+		client.server_capabilities.semanticTokensProvider = {
+			full = vim.empty_dict(),
+			legend = {
+				tokenModifiers = { "static_symbol" },
+				tokenTypes = token_types,
+			},
+			range = true,
+		}
 	end
 end
 
@@ -163,11 +177,6 @@ lspconfig["volar"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["csharp_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -179,6 +188,11 @@ lspconfig["crystalline"].setup({
 })
 
 lspconfig["elixirls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["omnisharp"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })

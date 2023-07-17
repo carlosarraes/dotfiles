@@ -47,6 +47,7 @@ require("lazy").setup({
 	},
 	"folke/noice.nvim",
 	"kdheepak/lazygit.nvim",
+	"lukas-reineke/indent-blankline.nvim",
 
 	-- Tests
 	"vim-test/vim-test",
@@ -126,4 +127,7 @@ require("lazy").setup({
 
 	-- Crystal
 	"vim-crystal/vim-crystal",
+
+	-- C#
+	"OmniSharp/omnisharp-vim",
 })

@@ -3,4 +3,11 @@ if not ok then
 	return
 end
 
-bufferline.setup({})
+bufferline.setup({}, {
+	hightlights = {
+		fill = {
+			fg = { attribute = "fg", highlight = "TabLine" },
+			bg = { attribute = "bg", highlight = "TabLine" },
+		},
+	},
+})
