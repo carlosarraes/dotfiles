@@ -70,6 +70,9 @@ set -Ua fish_user_paths (go env GOPATH)/bin $fish_user_paths
 # asdf
 source ~/.asdf/asdf.fish
 
+# cuda
+set -x PATH /opt/cuda/bin $PATH
+
 # Vi mode
 fish_vi_key_bindings
 
