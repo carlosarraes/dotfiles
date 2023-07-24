@@ -20,7 +20,7 @@ local fb_actions = telescope.extensions.file_browser.actions
 telescope.setup({
 	extensions = {
 		file_browser = {
-			theme = "ivy",
+			theme = "dropdown",
 			hijack_netrw = true,
 			mappings = {
 				["i"] = {
@@ -31,6 +31,8 @@ telescope.setup({
 					["R"] = fb_actions.rename,
 					["."] = fb_actions.toggle_hidden,
 					["<C-d>"] = fb_actions.goto_parent_dir,
+					["<C-k>"] = actions.preview_scrolling_up,
+					["<C-j>"] = actions.preview_scrolling_down,
 				},
 			},
 		},

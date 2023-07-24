@@ -130,4 +130,7 @@ require("lazy").setup({
 
 	-- C#
 	"OmniSharp/omnisharp-vim",
+
+	-- Kotlin
+	"udalov/kotlin-vim",
 })

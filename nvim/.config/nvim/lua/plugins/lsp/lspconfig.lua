@@ -22,6 +22,8 @@ if not typescript_setup then
 end
 
 local token_types = require("plugins.lsp.csharp-token")
+local on_list = require("plugins.lsp.ignore-modules")
+local definition_to_the_side = require("plugins.lsp.def-split")
 
 local bind = vim.keymap.set -- for conciseness
 
@@ -31,7 +33,10 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- set keybinds
-	bind("n", "gd", vim.lsp.buf.definition, opts) -- show definition
+	vim.keymap.set("n", "gd", function()
+		vim.lsp.buf.definition({ on_list = on_list })
+	end, opts)
+	bind("n", "gv", definition_to_the_side, opts) -- show definition in vertical split"
 	bind("n", "gD", vim.lsp.buf.declaration, opts) -- show declaration
 	bind("n", "gr", vim.lsp.buf.references, opts) -- show references
 	bind("n", "gi", vim.lsp.buf.implementation, opts) -- go to implementation
@@ -70,6 +75,7 @@ end
 
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
+capabilities.offsetEncoding = { "utf-8", "utf-16" }
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
@@ -193,6 +199,11 @@ lspconfig["elixirls"].setup({
 })
 
 lspconfig["omnisharp"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["kotlin_language_server"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
