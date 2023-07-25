@@ -73,8 +73,16 @@ source ~/.asdf/asdf.fish
 # cuda
 set -x PATH /opt/cuda/bin $PATH
 
+# flyctl
+set -x FLYCTL_INSTALL "/home/carraes/.fly"
+set -x PATH $FLYCTL_INSTALL/bin $PATH
+
 # Vi mode
 fish_vi_key_bindings
 
 # For Thunar:
 # alacritty --command fish -C "cd %f"
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

@@ -35,7 +35,7 @@ alias screenon='xrandr --output eDP --auto'
 # NeoVim
 alias setlint='nvim ~/.config/nvim/lua/plugins/lsp/null-ls.lua'
 alias setcopilot='nvim ~/.config/nvim/lua/plugins/copilot.lua'
-alias v='nvim $(fzf)'
+alias v='nvim (rg --files | fzf)'
 alias vim='nvim'
 alias rvim='vim'
 
@@ -51,3 +51,6 @@ alias lda='exa -als mod --group-directories-first --color=always'
 # Go
 alias coverago='go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out'
 alias nodego='nodemon --exec go run main.go --signal SIGTERM'
+
+# CURL 
+alias purl='curl -X POST'
