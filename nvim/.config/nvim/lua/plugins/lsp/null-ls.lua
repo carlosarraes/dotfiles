@@ -18,12 +18,13 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.csharpier, -- c# formatter
 		formatting.prettierd, -- js/ts formatter
-		formatting.ktlint, -- kotlin formatter
-		diagnostics.ktlint, -- kotlin linter
 		formatting.google_java_format, -- java formatter
 		formatting.black, -- python formatter
 		formatting.isort, -- python formatter
 		formatting.mix, -- elixir formatter
+		formatting.rubocop.with({
+			filetypes = { "ruby", "erb" },
+		}), -- ruby formatter
 		-- formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
 		diagnostics.flake8, -- python linter
 		diagnostics.golangci_lint, -- go linter
