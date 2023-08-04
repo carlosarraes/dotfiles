@@ -9,9 +9,12 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
+opt.breakindent = true
+opt.showbreak = "↳  "
+opt.linebreak = true
 
 -- Wrapping
-opt.wrap = true
+opt.wrap = false
 
 -- Search
 opt.ignorecase = true
