@@ -18,6 +18,7 @@ keybinds clear-defaults=true {
       bind "j" { Resize "Increase Down"; }
       bind "k" { Resize "Increase Up"; }
       bind "l" { Resize "Increase Right"; }
+      bind "\\" { Resize "Increase Left"; Resize "Increase Right"; }
       bind "H" { Resize "Decrease Left"; }
       bind "J" { Resize "Decrease Down"; }
       bind "K" { Resize "Decrease Up"; }
