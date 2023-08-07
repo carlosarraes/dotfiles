@@ -31,8 +31,10 @@ function theme
   set -U fish_pager_color_description 6c7086
 end
 
+# Envs
 set -x OPENAI_API_KEY (cat ~/.config/fish/chatkey.txt)
 
+# Sources
 alias rename_files "~/.config/fish/functions/rename_files.fish"
 starship init fish | source
 zoxide init fish | source
@@ -42,6 +44,9 @@ set PATH $HOME/.cargo/bin $PATH
 
 # Add d2 to PATH
 set PATH $HOME/.local/bin $PATH
+
+# Ruby
+set -gx PATH $HOME/.local/share/gem/ruby/3.0.0/bin $PATH
 
 # tmuxifier
 source ~/.tmuxifier/init.fish
