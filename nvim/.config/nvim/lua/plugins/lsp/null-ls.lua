@@ -26,7 +26,7 @@ null_ls.setup({
 			filetypes = { "ruby", "erb" },
 		}), -- ruby formatter
 		-- formatting.eslint_d, -- js/ts formatter - for projetcs that lint doesnt work well
-		diagnostics.flake8, -- python linter
+		diagnostics.mypy, -- python linter
 		diagnostics.golangci_lint, -- go linter
 		-- diagnostics.eslint_d, -- js linter
 		diagnostics.eslint_d.with({ -- js/ts linter
