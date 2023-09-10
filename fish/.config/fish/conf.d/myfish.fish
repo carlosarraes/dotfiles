@@ -39,13 +39,13 @@ alias vim='nvim'
 alias rvim='vim'
 
 # ls
-alias ls='exa -al --color=always --group-directories-first'
-alias la='exa -a --color=always --group-directories-first'
-alias ll='exa -l --color=always --group-directories-first'
-alias lt='exa -aT --color=always --group-directories-first'
-alias l.='exa -als mod --color=always --group-directories-first -I .git'
-alias ld='exa -ls mod --group-directories-first --color=always'
-alias lda='exa -als mod --group-directories-first --color=always'
+alias ls='eza -al --color=always --group-directories-first'
+alias la='eza -a --color=always --group-directories-first'
+alias ll='eza -l --color=always --group-directories-first'
+alias lt='eza -aT --color=always --group-directories-first'
+alias l.='eza -als mod --color=always --group-directories-first -I .git'
+alias ld='eza -ls mod --group-directories-first --color=always'
+alias lda='eza -als mod --group-directories-first --color=always'
 
 # Go
 alias coverago='go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out'
