@@ -124,6 +124,8 @@ bind("n", "gh", "<cmd>diffget //3<cr>", opts) -- get the lower version of a diff
 bind("n", "<leader>dt", ":DapUiToggle<CR>", opts) -- toggle dap ui
 bind("n", "<leader>dc", ":DapContinue<CR>", opts) -- continue
 bind("n", "<leader>db", ":DapToggleBreakpoint<CR>", opts) -- stop
+bind("n", "<leader>ds", ":DapStepOver<CR>", opts) -- step over
+bind("n", "<leader>di", ":DapStepInto<CR>", opts) -- step into
 bind("n", "<leader>dr", ":lua require('dapui').open({reset = true})<CR>", opts) -- restart
 
 -- Diffview

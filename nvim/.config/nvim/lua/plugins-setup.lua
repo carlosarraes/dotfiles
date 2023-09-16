@@ -103,9 +103,27 @@ require("lazy").setup({
 	{ "sindrets/diffview.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
 	-- DAPs
-	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+	"mfussenegger/nvim-dap",
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap" },
+		config = function()
+			local dap = require("dap")
+			local dapui = require("dapui")
+
+			dapui.setup()
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+		end,
+	},
 	"theHamsta/nvim-dap-virtual-text",
-	"leoluz/nvim-dap-go",
 
 	-- SQL
 	"tpope/vim-dadbod",
@@ -118,6 +136,19 @@ require("lazy").setup({
 			"kristijanhusak/vim-dadbod-ui",
 			"kristijanhusak/vim-dadbod-completion",
 		},
+	},
+
+	-- Python
+	{
+		"mfussenegger/nvim-dap-python",
+		dependecies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+		},
+		config = function()
+			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+			require("dap-python").setup(path)
+		end,
 	},
 
 	-- Java
@@ -135,13 +166,11 @@ require("lazy").setup({
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 	},
+	"leoluz/nvim-dap-go",
 
 	-- Crystal
 	"vim-crystal/vim-crystal",
 
 	-- C#
 	"OmniSharp/omnisharp-vim",
-
-	-- Kotlin
-	-- "udalov/kotlin-vim",
 })
