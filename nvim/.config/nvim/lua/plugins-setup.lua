@@ -48,6 +48,7 @@ require("lazy").setup({
 	"folke/noice.nvim",
 	"kdheepak/lazygit.nvim",
 	"lukas-reineke/indent-blankline.nvim",
+	"rmagatti/goto-preview",
 
 	-- Tests
 	"vim-test/vim-test",
@@ -92,6 +93,7 @@ require("lazy").setup({
 		end,
 		dependencies = {
 			"windwp/nvim-ts-autotag",
+			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 	},
 
@@ -108,6 +110,15 @@ require("lazy").setup({
 	-- SQL
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-ui",
+	"kristijanhusak/vim-dadbod-completion",
+	{
+		"tpope/vim-dadbod",
+		opt = true,
+		requires = {
+			"kristijanhusak/vim-dadbod-ui",
+			"kristijanhusak/vim-dadbod-completion",
+		},
+	},
 
 	-- Java
 	"mfussenegger/nvim-jdtls",
