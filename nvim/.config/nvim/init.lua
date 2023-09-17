@@ -28,5 +28,3 @@ require("plugins.goto-preview")
 require("funcs.test-file")
 require("core.colorscheme")
 vim.cmd([[autocmd BufRead,BufNewFile *.gohtml setfiletype html]])
-
-vim.g.python3_host_prog = "~/.config/nvim/venv/bin/python3"
