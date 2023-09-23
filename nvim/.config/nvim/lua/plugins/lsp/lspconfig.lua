@@ -208,11 +208,6 @@ lspconfig["elixirls"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["omnisharp"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
 lspconfig["solargraph"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,

@@ -26,6 +26,7 @@ require("lazy").setup({
 
 	-- Essentials
 	"tpope/vim-surround", -- Surrond like vs-code
+	"tpope/vim-abolish", -- Abbreviations
 	"vim-scripts/ReplaceWithRegister", -- Use register for replacement grw
 	"numToStr/Comment.nvim", -- Comment line
 	"nvim-tree/nvim-web-devicons",
@@ -170,7 +171,4 @@ require("lazy").setup({
 
 	-- Crystal
 	"vim-crystal/vim-crystal",
-
-	-- C#
-	"OmniSharp/omnisharp-vim",
 })
