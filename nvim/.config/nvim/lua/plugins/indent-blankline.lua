@@ -1,4 +1,4 @@
-local setup, indent_blankline = pcall(require, "indent_blankline")
+local setup, indent_blankline = pcall(require, "ibl")
 if not setup then
 	return
 end
