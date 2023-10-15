@@ -3,6 +3,4 @@ if not setup then
 	return
 end
 
-indent_blankline.setup({
-	show_current_context = true,
-})
+indent_blankline.setup()
