@@ -96,3 +96,6 @@ fish_vi_key_bindings
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# opam configuration
+source /home/carraes/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

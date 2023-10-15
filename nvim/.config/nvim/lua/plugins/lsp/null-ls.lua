@@ -22,6 +22,7 @@ null_ls.setup({
 		formatting.black, -- python formatter
 		formatting.isort, -- python formatter
 		formatting.mix, -- elixir formatter
+		formatting.ocamlformat, -- ocaml formatter
 		formatting.rubocop.with({
 			filetypes = { "ruby", "erb" },
 		}), -- ruby formatter

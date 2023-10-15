@@ -89,7 +89,7 @@ end
 lspconfig["html"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	filetypes = { "html", "gohtml" },
+	filetypes = { "html", "gohtml", "jsp" },
 })
 
 -- configure typescript server with plugin
@@ -211,4 +211,19 @@ lspconfig["elixirls"].setup({
 lspconfig["solargraph"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+})
+
+lspconfig["ocamllsp"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	root_dir = lspconfig.util.root_pattern(
+		"*.opam",
+		"esy.json",
+		"package.json",
+		".git",
+		"dune-project",
+		"dune-workspace"
+	),
+	filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+	cmd = { "ocamllsp" },
 })
