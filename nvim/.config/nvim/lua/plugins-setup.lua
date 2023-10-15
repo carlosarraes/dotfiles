@@ -33,7 +33,6 @@ require("lazy").setup({
 	"nvim-tree/nvim-tree.lua",
 	"gbprod/yanky.nvim", -- yanky
 	"norcalli/nvim-colorizer.lua", -- colors
-	"ThePrimeagen/harpoon", -- Harpoon
 	"nvim-lualine/lualine.nvim",
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 	{ "akinsho/bufferline.nvim", version = "*" },
