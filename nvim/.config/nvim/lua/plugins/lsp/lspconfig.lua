@@ -213,6 +213,11 @@ lspconfig["solargraph"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["zls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["ocamllsp"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,

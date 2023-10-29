@@ -23,6 +23,7 @@ null_ls.setup({
 		formatting.isort, -- python formatter
 		formatting.mix, -- elixir formatter
 		formatting.ocamlformat, -- ocaml formatter
+		formatting.rustfmt, -- rust formatter
 		formatting.rubocop.with({
 			filetypes = { "ruby", "erb" },
 		}), -- ruby formatter
