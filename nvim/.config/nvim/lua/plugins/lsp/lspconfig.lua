@@ -36,7 +36,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gd", function()
 		vim.lsp.buf.definition({ on_list = on_list })
 	end, opts)
-	bind("n", "gv", definition_to_the_side, opts) -- show definition in vertical split"
+	bind("n", "gV", definition_to_the_side, opts) -- show definition in vertical split"
 	bind("n", "gD", vim.lsp.buf.declaration, opts) -- show declaration
 	bind("n", "gr", vim.lsp.buf.references, opts) -- show references
 	bind("n", "gi", vim.lsp.buf.implementation, opts) -- go to implementation
