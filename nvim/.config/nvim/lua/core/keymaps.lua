@@ -46,6 +46,10 @@ bind("i", "<C-q>", "<C-o>zz", opts)
 bind("n", "<leader>p", "cw<C-r>0<ESC>", opts)
 bind("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 bind("v", "<leader>/", "<esc>/\\%V", opts) -- search within selection
+bind("i", "<A-l>", "<Right>", opts) -- move cursor right
+bind("i", "<A-h>", "<Left>", opts) -- move cursor left
+bind("i", "<A-k>", "<Up>", opts) -- move cursor up
+bind("i", "<A-j>", "<Down>", opts) -- move cursor down
 
 -- Clipboard/Yanks
 bind("v", "<leader>y", '"+y', opts) -- Needs xclip (Arch)
