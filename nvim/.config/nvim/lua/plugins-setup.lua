@@ -47,6 +47,7 @@ require("lazy").setup({
 	},
 	"folke/noice.nvim",
 	"kdheepak/lazygit.nvim",
+	"dinhhuy258/git.nvim",
 	"lukas-reineke/indent-blankline.nvim",
 	"rmagatti/goto-preview",
 
