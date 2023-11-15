@@ -43,8 +43,8 @@ local on_attach = function(client, bufnr)
 	bind("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 	bind("n", "<space>ca", vim.lsp.buf.code_action, opts)
 	bind("n", "<space>rn", vim.lsp.buf.rename, opts)
-	bind("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-	bind("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+	bind("n", "<C-k>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+	bind("n", "<C-j>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 
 	-- LspSaga
 	bind({ "n", "v" }, "<leader>sca", "<cmd>Lspsaga code_action<CR>")
