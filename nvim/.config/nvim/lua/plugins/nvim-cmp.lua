@@ -15,6 +15,11 @@ if not lspkind_status then
 	return
 end
 
+local copilot_cmp_setup, co_cmp = pcall(require, "copilot_cmp.comparators")
+if not copilot_cmp_setup then
+	return
+end
+
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").load({ paths = "~/.config/nvim/snippets/" })
@@ -28,8 +33,8 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-		["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+		["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+		["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
@@ -38,6 +43,7 @@ cmp.setup({
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({
+		{ name = "copilot" },
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
@@ -48,10 +54,14 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			maxwidth = 50,
 			ellipsis_char = "...",
+			mode = "symbol",
+			max_width = 50,
+			symbol_map = { Copilot = "" },
 		}),
 	},
 	sorting = {
 		comparators = {
+			co_cmp.prioritize,
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
 			cmp.config.compare.score,
@@ -64,13 +74,13 @@ cmp.setup({
 	},
 })
 
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+vim.keymap.set({ "i", "s" }, "<C-n>", function()
 	if luasnip.expand_or_jumpable() then
 		luasnip.expand_or_jump()
 	end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<C-j>", function()
+vim.keymap.set({ "i", "s" }, "<C-p>", function()
 	if luasnip.jumpable(-1) then
 		luasnip.jump(-1)
 	end

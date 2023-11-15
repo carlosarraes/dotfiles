@@ -64,6 +64,7 @@ require("lazy").setup({
 	"hrsh7th/cmp-buffer", -- source for text in buffer
 	"hrsh7th/cmp-path", -- source for file system paths
 	"zbirenbaum/copilot.lua", -- Copilot Lua
+	"zbirenbaum/copilot-cmp",
 
 	-- Snippets
 	"L3MON4D3/LuaSnip", -- snippet engine
