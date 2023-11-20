@@ -1,0 +1,47 @@
+{
+  "optimize_code_4": {
+    "type": "chat",
+    "opts": {
+      "template": "Optimize the following code.\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nOptimized version:\n```{{filetype}}",
+      "strategy": "edit",
+      "params": {
+        "model": "gpt-4",
+        "stop": ["```"]
+      }
+    }
+  },
+  "add_tests_4": {
+    "type": "chat",
+    "opts": {
+      "template": "Implement tests for the following code.\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nTests:\n```{{filetype}}",
+      "strategy": "append",
+      "params": {
+        "model": "gpt-4",
+        "stop": ["```"]
+      }
+    }
+  },
+  "code_readability_analysis_4": {
+    "type": "chat",
+    "opts": {
+      "template": "You must identify any readability issues in the code snippet.\nSome readability issues to consider:\n- Unclear naming\n- Unclear purpose\n- Redundant or obvious comments\n- Lack of comments\n- Long or complex one liners\n- Too much nesting\n- Long variable names\n- Inconsistent naming and code style.\n- Code repetition\nYou may identify additional problems. The user submits a small section of code from a larger file.\nOnly list lines with readability issues, in the format <line_num>|<issue and proposed solution>\nYour commentary must fit on a single line\nDo not use the range of lines but just single line number\nIf there's no issues with code respond with only: <OK>\n. Analyze the following code for readability.\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nAnalysis:\n```{{filetype}}",
+      "strategy": "append",
+      "params": {
+        "model": "gpt-4",
+        "stop": ["```"]
+      }
+    }
+  },
+  "explain_code_4": {
+    "type": "chat",
+    "opts": {
+      "title": " Explain Code",
+      "template": "Explain the following code:\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nUse markdown format.\nHere's what the above code is doing:\n```",
+      "strategy": "display",
+      "params": {
+        "model": "gpt-4",
+        "stop": ["```"]
+      }
+    }
+  }
+}

@@ -3,11 +3,6 @@ if not copilot_setup then
 	return
 end
 
-local copilot_cmp_setup, cmp = pcall(require, "copilot_cmp")
-if not copilot_cmp_setup then
-	return
-end
-
 copilot.setup({
 	panel = {
 		enabled = false,
@@ -25,7 +20,7 @@ copilot.setup({
 		},
 	},
 	suggestion = {
-		enabled = false,
+		enabled = true,
 		auto_trigger = true,
 		debounce = 75,
 		keymap = {
@@ -49,5 +44,3 @@ copilot.setup({
 	copilot_node_command = "node", -- Node.js version must be > 16.x
 	server_opts_overrides = {},
 })
-
-cmp.setup()

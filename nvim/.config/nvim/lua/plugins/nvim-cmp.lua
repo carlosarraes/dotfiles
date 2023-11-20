@@ -15,11 +15,6 @@ if not lspkind_status then
 	return
 end
 
-local copilot_cmp_setup, co_cmp = pcall(require, "copilot_cmp.comparators")
-if not copilot_cmp_setup then
-	return
-end
-
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").load({ paths = "~/.config/nvim/snippets/" })
@@ -43,7 +38,6 @@ cmp.setup({
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "copilot" },
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
@@ -61,7 +55,6 @@ cmp.setup({
 	},
 	sorting = {
 		comparators = {
-			co_cmp.prioritize,
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
 			cmp.config.compare.score,
