@@ -1,7 +1,7 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
     normal {
-      bind "Ctrl a" { SwitchToMode "Pane"; }
+      bind "Ctrl p" { SwitchToMode "Pane"; }
       bind "Ctrl t" { SwitchToMode "Tab"; }
       bind "Ctrl e" { SwitchToMode "Scroll"; }
       bind "Ctrl /" { SwitchToMode "Search"; }
@@ -31,7 +31,7 @@ keybinds clear-defaults=true {
       bind "Right" { MovePane "Right"; }
     }
     pane {
-      bind "Ctrl a" { SwitchToMode "Normal"; }
+      bind "Ctrl p" { SwitchToMode "Normal"; }
       bind "h" "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
       bind "l" "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
       bind "j" "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
@@ -43,7 +43,7 @@ keybinds clear-defaults=true {
       bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
       bind "f" { TogglePaneFrames; SwitchToMode "Normal"; }
       bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
-      bind "Ctrl a" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+      bind "Ctrl p" { ToggleFloatingPanes; SwitchToMode "Normal"; }
       bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
       bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
@@ -120,10 +120,10 @@ keybinds clear-defaults=true {
       bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
     shared_except "pane" "locked" {
-      bind "Ctrl a" { SwitchToMode "Pane"; }
+      bind "Ctrl p" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
-      bind "Ctrl n" { SwitchToMode "Resize"; }
+      bind "Ctrl z" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
       bind "Ctrl e" { SwitchToMode "Scroll"; }
