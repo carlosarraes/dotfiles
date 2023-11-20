@@ -107,9 +107,13 @@ bind("n", "<leader>dv", "<cmd>Telescope vim_options<cr>", opts) -- list all vim 
 bind("n", "<leader>yw", "<cmd>Telescope yank_history<cr>", opts) -- list all yanks
 
 -- ChatGPT
-bind("n", "<leader>cg", "<cmd>ChatGPT<cr>", opts) -- open chatgpt window
-bind("v", "<leader>cg", "<cmd>ChatGPTEditWithInstructions<cr>", opts) -- open chatgpt editwithinstructions window
-bind("n", "<leader>cs", "<cmd>ChatGPTActAs<cr>", opts) -- send chatgpt message
+bind("n", "<C-g>c", "<cmd>ChatGPT<cr>", opts) -- open chatgpt window
+bind("n", "<C-g>a", "<cmd>ChatGPTActAs<cr>", opts) -- send chatgpt message
+bind("v", "<C-g>v", "<cmd>ChatGPTEditWithInstructions<cr>", opts) -- open chatgpt editwithinstructions window
+bind({ "n", "v" }, "<C-g>ro", "<cmd>ChatGPTRun optimize_code_4<cr>", opts) -- optimize code
+bind({ "n", "v" }, "<C-g>re", "<cmd>ChatGPTRun explain_code_4<cr>", opts) -- optimize code
+bind({ "n", "v" }, "<C-g>rc", "<cmd>ChatGPTRun code_readability_analysis_4<cr>", opts) -- optimize code
+bind({ "n", "v" }, "<C-g>rt", "<cmd>ChatGPTRun add_tests_4<cr>", opts) -- optimize code
 
 -- Dadbod
 bind("n", "<leader>du", "<cmd>DBUIToggle<cr>", opts) -- open dadbod ui
@@ -134,9 +138,6 @@ bind("n", "<leader>db", ":DapToggleBreakpoint<CR>", opts) -- stop
 bind("n", "<leader>ds", ":DapStepOver<CR>", opts) -- step over
 bind("n", "<leader>di", ":DapStepInto<CR>", opts) -- step into
 bind("n", "<leader>dr", ":lua require('dapui').open({reset = true})<CR>", opts) -- restart
-
--- Diffview
-bind("n", "D", ":DiffviewOpen<cr>", opts)
 
 -- restart lsp server (not on youtube nvim video, opts)
 bind("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
