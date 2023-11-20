@@ -18,6 +18,9 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.csharpier, -- c# formatter
 		formatting.prettierd, -- js/ts formatter
+		formatting.prettierd.with({
+			filetypes = { "svelte" },
+		}),
 		formatting.google_java_format, -- java formatter
 		formatting.black, -- python formatter
 		formatting.isort, -- python formatter

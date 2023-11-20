@@ -232,3 +232,8 @@ lspconfig["ocamllsp"].setup({
 	filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
 	cmd = { "ocamllsp" },
 })
+
+lspconfig["svelte"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
