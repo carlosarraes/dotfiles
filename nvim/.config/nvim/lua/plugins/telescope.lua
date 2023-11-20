@@ -31,8 +31,8 @@ telescope.setup({
 					["R"] = fb_actions.rename,
 					["."] = fb_actions.toggle_hidden,
 					["<C-d>"] = fb_actions.goto_parent_dir,
-					["<C-k>"] = actions.move_selection_previous,
-					["<C-j>"] = actions.move_selection_next,
+					["<C-p>"] = actions.move_selection_previous,
+					["<C-n>"] = actions.move_selection_next,
 					["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 				},
 			},
@@ -42,8 +42,8 @@ telescope.setup({
 		grouped = true,
 		mappings = {
 			i = {
-				["<C-k>"] = actions.move_selection_previous, -- move to prev result
-				["<C-j>"] = actions.move_selection_next, -- move to next result
+				["<C-p>"] = actions.move_selection_previous, -- move to prev result
+				["<C-n>"] = actions.move_selection_next, -- move to next result
 				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
 			},
 		},
