@@ -3,7 +3,6 @@ local opts = { noremap = true, silent = true }
 
 -- General
 bind("n", "<C-s>", ":w<CR>", opts)
-bind("n", "<C-z>", "u", opts)
 bind("n", "<leader>nh", ":nohl<CR>", opts)
 
 -- Window management
