@@ -83,7 +83,7 @@ return {
 			on_attach = on_attach,
 		})
 
-		lspconfig["ts_ls"].setup({
+		lspconfig["vtsls"].setup({
 			server = {
 				capabilities = capabilities,
 				on_attach = on_attach,

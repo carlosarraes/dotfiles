@@ -17,7 +17,7 @@ return {
 
 		mason_lsp.setup({
 			ensure_installed = {
-				"tsserver",
+				"vtsls",
 				"html",
 				"cssls",
 				"tailwindcss",
