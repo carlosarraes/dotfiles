@@ -5,13 +5,15 @@ eval "$(zoxide init zsh)"
 # Keyboard
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
 bindkey '^K' kill-line
 
 # Setup
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-source /opt/homebrew/opt/fzf/shell/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # Alias
 alias ls='eza -al --color=always --group-directories-first'
@@ -24,8 +26,9 @@ alias lda='eza -als mod --group-directories-first --color=always'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias c='curlie'
+alias h='http'
 alias lzg='lazygit'
+alias lzd='lazydocker'
 alias cat='bat'
 
 # Rust
@@ -66,22 +69,29 @@ vr() {
   fi
 }
 
-. "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 take() {
   mkdir -p "$1"
   cd "$1"
 }
 
+# Kitty
+
+kitty-reload() {
+  kill -SIGUSR1 $(pidof kitty)
+}
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# bun completions
-[ -s "/Users/carraes/.bun/_bun" ] && source "/Users/carraes/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
