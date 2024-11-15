@@ -28,6 +28,7 @@ opt.cursorline = true
 -- Appearence
 opt.signcolumn = "yes"
 
+
 -- Backspace
 opt.backspace = "indent,eol,start"
 
