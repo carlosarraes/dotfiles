@@ -31,6 +31,11 @@ alias lzg='lazygit'
 alias lzd='lazydocker'
 alias cat='bat'
 
+# yt
+yt() {
+	yt-dlp -o - "$1" | mpv -
+}
+
 # Rust
 alias cwr="cargo watch -q -c -x 'run -q'"
 
