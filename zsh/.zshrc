@@ -81,6 +81,10 @@ take() {
   cd "$1"
 }
 
+field() {
+  awk -F "${2:-}" "{ print \$${1:-1} }"
+}
+
 # Kitty
 
 kitty-reload() {
