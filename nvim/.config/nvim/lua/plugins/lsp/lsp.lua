@@ -28,18 +28,18 @@ return {
       bind("n", "gV", def_split, opts)
       bind("n", "gd", function()
         vim.lsp.buf.definition({ on_list = on_list })
-      end, opts)                                                                  -- go to definition
-      bind("n", "gr", "<cmd>lua require('fzf-lua').lsp_references()<cr>", opts)   -- show references
+      end, opts)                                                                     -- go to definition
+      bind("n", "gr", "<cmd>lua require('fzf-lua').lsp_references()<cr>", opts)      -- show references
       bind("n", "gi", "<cmd>lua require('fzf-lua').lsp_implementations()<cr>", opts) -- show references
-      bind("n", "gt", "<cmd>lua require('fzf-lua').lsp_typedefs()<cr>", opts)     -- show references
-      bind("n", "K", vim.lsp.buf.hover, opts)                                     -- show documentation for what is under cursor
+      bind("n", "gt", "<cmd>lua require('fzf-lua').lsp_typedefs()<cr>", opts)        -- show references
+      bind("n", "K", vim.lsp.buf.hover, opts)                                        -- show documentation for what is under cursor
       bind({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
       bind("n", "<space>rn", vim.lsp.buf.rename, opts)
       bind("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
       bind("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 
-      bind("n", "<leader>rf", ":TSToolsRenameFile<CR>")   -- rename file and update imports
-      bind("n", "<leader>ri", ":TSToolsRemoveUnused<CR>") -- remove unused variables
+      bind("n", "<leader>rf", ":TSToolsRenameFile<CR>")      -- rename file and update imports
+      bind("n", "<leader>ri", ":TSToolsRemoveUnused<CR>")    -- remove unused variables
       bind("n", "<leader>ru", ":TSToolsOrganizeImports<CR>") -- organize imports
 
       if client.server_capabilities.documentSymbolProvider then
@@ -171,9 +171,9 @@ return {
       on_attach = on_attach,
     })
 
-    lspconfig["ngserver"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+    -- lspconfig["ngserver"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    -- })
   end,
 }

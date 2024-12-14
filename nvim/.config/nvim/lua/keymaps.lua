@@ -14,7 +14,6 @@ bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 -- Buffer management
 bind("n", "<tab>", ":bnext<CR>", opts)   -- next buffer
 bind("n", "<s-tab>", ":bprev<CR>", opts) -- previous buffer
-bind("n", "<leader>x", ":bdelete<CR>", opts)
 
 -- Tabs
 bind("n", "<leader>to", ":tabnew<CR>", opts)   -- open new tab
@@ -82,7 +81,3 @@ bind({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
 bind("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
 bind("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
 bind("n", ";yw", ":YankyRingHistory<CR>", opts)
-
--- Floaterm
-bind("n", "<C-t>", ":FloatermToggle<CR>", opts)
-bind("t", "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>", opts)
