@@ -60,6 +60,7 @@ bind("n", "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", opts)
 -- FzfLua
 bind("n", ";f", "<cmd>lua require('fzf-lua').files()<cr>", opts)
 bind("n", ";r", "<cmd>lua require('fzf-lua').live_grep_glob()<cr>", opts)
+bind("n", ";d", "<cmd>lua require('fzf-lua').diagnostics_workspace()<cr>", opts)
 -- bind("n", ";r", "<cmd>lua require('fzf-lua').live_grep_glob({ filter = \"rg -v '*tests/'\" })<cr>", opts)
 bind("n", ";;", "<cmd>lua require('fzf-lua').resume()<cr>", opts)
 
@@ -81,3 +82,6 @@ bind({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
 bind("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
 bind("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
 bind("n", ";yw", ":YankyRingHistory<CR>", opts)
+
+-- Neotree
+bind("n", "<leader>e", ":Neotree toggle<CR>", opts)
