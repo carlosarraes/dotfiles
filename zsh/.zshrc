@@ -108,3 +108,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
+# asdf
+. "$HOME/.asdf/asdf.sh"
