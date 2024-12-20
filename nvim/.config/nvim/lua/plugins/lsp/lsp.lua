@@ -3,8 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-cmdline",
+    'saghen/blink.cmp',
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
@@ -14,10 +13,8 @@ return {
 
     local lspconfig = require("lspconfig")
     local util = require("lspconfig/util")
-    local cmp_lsp = require("cmp_nvim_lsp")
-    local cmp = require("cmp")
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-    local capabilities = cmp_lsp.default_capabilities()
     local on_attach = function(client, bufnr)
       local on_list = require("plugins.lsp.utils.ignore_modules")
       local def_split = require("plugins.lsp.utils.def_split")
@@ -47,26 +44,6 @@ return {
       end
     end
 
-    cmp.setup.cmdline("/", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = "buffer" },
-      },
-    })
-
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        {
-          name = "cmdline",
-          option = {
-            ignore_cmds = { "Man", "!" },
-          },
-        },
-      }),
-    })
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
