@@ -16,7 +16,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 # Alias
-alias ls='eza -al --color=always --group-directories-first'
+alias ls='eza -al --color=always --group-directories-first --sort=date'
 alias la='eza -a --color=always --group-directories-first'
 alias ll='eza -l --color=always --group-directories-first'
 alias lt='eza -aT --color=always --group-directories-first'
