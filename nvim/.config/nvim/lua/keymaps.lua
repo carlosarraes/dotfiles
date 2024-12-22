@@ -85,3 +85,7 @@ bind("n", ";yw", ":YankyRingHistory<CR>", opts)
 
 -- Neotree
 bind("n", "<leader>e", ":Neotree toggle<CR>", opts)
+
+local termtoggle = require("local.term")
+vim.keymap.set('n', '<C-t>', termtoggle.toggleterm, { desc = 'toggle terminal' })
+vim.keymap.set('t', '<C-t>', termtoggle.toggleterm, { buffer = termtoggle.buf, desc = 'toggle terminal' })
