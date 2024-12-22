@@ -74,7 +74,10 @@ vr() {
   fi
 }
 
-eval "$(atuin init zsh --disable-up-arrow)"
+pkill() {
+  ps aux | fzf --height 40% --layout=reverse --prompt="Select process to kill: " | awk '{print $2}' | xargs -r sudo kill
+}
+
 
 take() {
   mkdir -p "$1"
@@ -91,14 +94,24 @@ kitty-reload() {
   kill -SIGUSR1 $(pidof kitty)
 }
 
-pkill() {
-  ps aux | fzf --height 40% --layout=reverse --prompt="Select process to kill: " | awk '{print $2}' | xargs -r sudo kill
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
+
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
+# atuin
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -110,3 +123,4 @@ source <(ng completion script)
 
 # asdf
 . "$HOME/.asdf/asdf.sh"
+
