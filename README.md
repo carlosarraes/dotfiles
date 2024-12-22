@@ -4,13 +4,13 @@
 
 `sudo pacman -S git stow neovim zsh`
 
-## Terminal
-
-`sudo pacman -S fastfetch neovim vim eza fd bat ncdu btop ripgrep lazygit zoxide lf fzf zip unzip tmux starship yt-dlp`
-
 ## Wayland
 
 `sudo pacman -S wl-clipboard grim swappy slurp wf-recorder waybar hyprpaper hyprshot dunst cliphist`
+
+## Terminal
+
+`sudo pacman -S fastfetch neovim vim eza fd bat ncdu btop ripgrep lazygit zoxide lf fzf zip unzip tmux starship yt-dlp wikiman arch-wiki-docs`
 
 ## Node
 
