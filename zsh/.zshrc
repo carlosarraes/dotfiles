@@ -74,11 +74,6 @@ vr() {
   fi
 }
 
-pkill() {
-  ps aux | fzf --height 40% --layout=reverse --prompt="Select process to kill: " | awk '{print $2}' | xargs -r sudo kill
-}
-
-
 take() {
   mkdir -p "$1"
   cd "$1"
@@ -104,7 +99,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
@@ -117,10 +111,8 @@ eval "$(atuin init zsh --disable-up-arrow)"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
 # asdf
 . "$HOME/.asdf/asdf.sh"
-
