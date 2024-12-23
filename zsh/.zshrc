@@ -30,6 +30,7 @@ alias h='http'
 alias lzg='lazygit'
 alias lzd='lazydocker'
 alias cat='bat'
+alias ff='fastfetch'
 
 # yt
 yt() {
