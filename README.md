@@ -10,11 +10,15 @@
 
 ## Terminal
 
-`sudo pacman -S fastfetch neovim vim eza fd bat ncdu btop ripgrep lazygit zoxide lf fzf zip unzip tmux starship yt-dlp wikiman arch-wiki-docs`
+`sudo pacman -S fastfetch neovim vim eza fd bat ncdu btop ripgrep lazygit zoxide lf fzf zip unzip tmux starship yt-dlp`
 
 ## Node
 
 `sudo pacman -S nodejs-lts-iron npm`
+
+## Manpages
+
+`sudo pacman -S wikiman arch-wiki-docs man-pages`
 
 ## Yay
 
