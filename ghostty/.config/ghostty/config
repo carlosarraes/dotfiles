@@ -1,0 +1,15 @@
+# Font
+font-family="Hack Nerd Font Regular"
+font-size=11
+
+# Decorations
+adw-toolbar-style=flat
+gtk-wide-tabs=false
+background-opacity=0.95
+
+# Window
+window-theme=ghostty
+window-decoration=false
+
+# Theme
+theme=catppuccin-mocha
