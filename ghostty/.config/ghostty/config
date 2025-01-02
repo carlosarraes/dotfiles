@@ -13,3 +13,14 @@ window-decoration=false
 
 # Theme
 theme=catppuccin-mocha
+
+# Keybinds
+keybind=shift+ctrl+h=new_split:left
+keybind=shift+ctrl+j=new_split:down
+keybind=shift+ctrl+k=new_split:up
+keybind=shift+ctrl+l=new_split:right
+
+keybind=shift+ctrl+n=goto_split:next
+keybind=shift+ctrl+p=goto_split:previous
+
+
