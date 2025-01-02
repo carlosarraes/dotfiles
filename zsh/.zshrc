@@ -32,9 +32,16 @@ alias lzd='lazydocker'
 alias cat='bat'
 alias ff='fastfetch'
 
+# git
+alias g='git'
+alias gfp='git fetch -p && git pull'
+alias gcm='git checkout master'
+alias gcb='git checkout -b'
+alias gcc='git checkout'
+
 # yt
 yt() {
-	yt-dlp -o - "$1" | mpv -
+  yt-dlp -o - "$1" | mpv -
 }
 
 # Rust
@@ -92,12 +99,12 @@ kitty-reload() {
 
 # yazi
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 # nvm
@@ -117,3 +124,6 @@ source <(ng completion script)
 
 # asdf
 . "$HOME/.asdf/asdf.sh"
+
+# Turso
+export PATH="$PATH:/home/carraes/.turso"
