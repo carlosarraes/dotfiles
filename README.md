@@ -35,6 +35,10 @@ sudo pacman -S ttf-firacode-nerd ttf-hack-nerd ttf-nerd-fonts-symbols ttf-nerd-f
 sudo pacman -S $(pacman -Ssq noto-fonts)
 ```
 
+## Yay - Pkgs
+
+`yay -S lazysql lazydocker`
+
 ## Zsh Plugins
 
 `chsh -s /bin/zsh`
