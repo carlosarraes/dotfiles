@@ -6,17 +6,17 @@ bind("n", "<C-s>", ":w<CR>", opts)
 bind("n", "<leader>nh", ":nohl<CR>", opts)
 
 -- Window management
-bind("n", "<leader>sv", "<C-w>v", opts)     -- split window vertically
-bind("n", "<leader>sh", "<C-w>s", opts)     -- split window horizontally
-bind("n", "<leader>se", "<C-w>=", opts)     -- make split windows equal width & height
+bind("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
+bind("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
+bind("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 
 -- Buffer management
-bind("n", "<tab>", ":bnext<CR>", opts)   -- next buffer
+bind("n", "<tab>", ":bnext<CR>", opts) -- next buffer
 bind("n", "<s-tab>", ":bprev<CR>", opts) -- previous buffer
 
 -- Tabs
-bind("n", "<leader>to", ":tabnew<CR>", opts)   -- open new tab
+bind("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
 bind("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
 
 -- QoL
@@ -34,7 +34,7 @@ bind("n", "N", "Nzzzv", opts)
 bind("i", "<C-q>", "<C-o>zz", opts)
 bind("n", "<leader>p", "cw<C-r>0<ESC>b", opts)
 bind("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts) -- replace word under cursor
-bind("v", "<leader>/", "<esc>/\\%V", opts)                                           -- search within selection
+bind("v", "<leader>/", "<esc>/\\%V", opts) -- search within selection
 bind("n", "<Return>", "o<ESC>k", opts)
 bind("n", "<leader>5", ":UndotreeToggle<CR>", opts)
 
@@ -87,5 +87,5 @@ bind("n", ";yw", ":YankyRingHistory<CR>", opts)
 bind("n", "<leader>e", ":Neotree toggle<CR>", opts)
 
 local termtoggle = require("local.term")
-vim.keymap.set('n', '<C-t>', termtoggle.toggleterm, { desc = 'toggle terminal' })
-vim.keymap.set('t', '<C-t>', termtoggle.toggleterm, { buffer = termtoggle.buf, desc = 'toggle terminal' })
+vim.keymap.set("n", "<C-t>", termtoggle.toggleterm, { desc = "toggle terminal" })
+vim.keymap.set("t", "<C-t>", termtoggle.toggleterm, { buffer = termtoggle.buf, desc = "toggle terminal" })
