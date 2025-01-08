@@ -27,10 +27,13 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias h='http'
-alias lzg='lazygit'
-alias lzd='lazydocker'
 alias cat='bat'
 alias ff='fastfetch'
+
+# lazy
+alias lzg='lazygit'
+alias lzd='lazydocker'
+alias lzs='lazysql'
 
 # git
 alias g='git'
