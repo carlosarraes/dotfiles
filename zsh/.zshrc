@@ -35,18 +35,6 @@ alias lzg='lazygit'
 alias lzd='lazydocker'
 alias lzs='lazysql'
 
-# git
-alias g='git'
-alias gfp='git fetch -p && git pull'
-alias gcm='git checkout master'
-alias gcb='git checkout -b'
-alias gcc='git checkout'
-
-# yt
-yt() {
-  yt-dlp -o - "$1" | mpv -
-}
-
 # Rust
 alias cwr="cargo watch -q -c -x 'run -q'"
 
@@ -61,7 +49,12 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
-# Funcs
+# yt
+yt() {
+  yt-dlp -o - "$1" | mpv -
+}
+
+# nvim
 v() {
   if [ $# -eq 0 ]; then
     local file
@@ -85,6 +78,7 @@ vr() {
   fi
 }
 
+# Funcs
 take() {
   mkdir -p "$1"
   cd "$1"
@@ -109,6 +103,41 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+
+# git helpers
+git_develop_branch() {
+  if git show-ref --verify --quiet refs/heads/homolog; then
+    echo "homolog"
+  elif git show-ref --verify --quiet refs/heads/develop; then
+    echo "develop"
+  elif git show-ref --verify --quiet refs/heads/development; then
+    echo "development"
+  elif git show-ref --verify --quiet refs/heads/dev; then
+    echo "dev"
+  elif git show-ref --verify --quiet refs/heads/devel; then
+    echo "devel"
+  else
+    echo "develop"
+  fi
+}
+
+git_main_branch() {
+  if git show-ref --verify --quiet refs/heads/main; then
+    echo "main"
+  else
+    echo "master"
+  fi
+}
+
+alias g='git'
+alias gfp='git fetch -p && git pull'
+alias gcm='git checkout master'
+alias gcb='git checkout -b'
+alias gcc='git checkout'
+alias gs='git switch'
+alias gsc='git switch -c'
+alias gsd='git switch $(git_develop_branch)'
+alias gsm='git switch $(git_main_branch)'
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
