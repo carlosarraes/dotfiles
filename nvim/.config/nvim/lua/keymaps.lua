@@ -31,7 +31,6 @@ bind("n", "<C-Down>", "<C-d>zz", opts)
 bind("n", "<C-Up>", "<C-u>zz", opts)
 bind("n", "n", "nzzzv", opts)
 bind("n", "N", "Nzzzv", opts)
-bind("i", "<C-q>", "<C-o>zz", opts)
 bind("n", "<leader>p", "cw<C-r>0<ESC>b", opts)
 bind("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts) -- replace word under cursor
 bind("v", "<leader>/", "<esc>/\\%V", opts) -- search within selection

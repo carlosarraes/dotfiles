@@ -30,7 +30,7 @@ return {
 				auto_trigger = false,
 				debounce = 75,
 				keymap = {
-					accept = "<C-a>",
+					accept = "<C-q>",
 					accept_word = false,
 					accept_line = false,
 					next = "<C-s>",
