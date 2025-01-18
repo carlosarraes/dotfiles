@@ -83,7 +83,7 @@ bind("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
 bind("n", ";yw", ":YankyRingHistory<CR>", opts)
 
 -- Neotree
-bind("n", "<leader>e", ":Neotree toggle<CR>", opts)
+bind("n", "-", ":lua MiniFiles.open()<cr>", opts)
 
 local termtoggle = require("local.term")
 vim.keymap.set("n", "<C-t>", termtoggle.toggleterm, { desc = "toggle terminal" })
