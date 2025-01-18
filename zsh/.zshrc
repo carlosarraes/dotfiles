@@ -138,6 +138,8 @@ alias gs='git switch'
 alias gsc='git switch -c'
 alias gsd='git switch $(git_develop_branch)'
 alias gsm='git switch $(git_main_branch)'
+alias gpo='git push origin'
+alias gmm='git merge master'
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
