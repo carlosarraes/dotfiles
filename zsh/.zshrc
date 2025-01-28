@@ -161,3 +161,9 @@ source <(ng completion script)
 
 # Turso
 export PATH="$PATH:/home/carraes/.turso"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# bun completions
+[ -s "/home/carraes/.bun/_bun" ] && source "/home/carraes/.bun/_bun"
