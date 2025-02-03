@@ -16,3 +16,6 @@ export BROWSER="chromium"
 export VIDEO="mpv"
 export IMAGE="sxiv"
 export OPENER="xdg-open"
+
+# uv
+export PATH="/home/carraes/.local/bin:$PATH"
