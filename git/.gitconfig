@@ -1,0 +1,20 @@
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[push]
+  autoSetupRemote = true
+  default = current
+[pull]
+	rebase = false
+[core]
+	editor = nvim
+  pager = delta
+[delta]
+  line-numbers = true
+  side-by-side = true
+	navigate = true
+[interactive]
+	diffFilter = delta --color-only
+[merge]
+	conflictStyle = zdiff3
