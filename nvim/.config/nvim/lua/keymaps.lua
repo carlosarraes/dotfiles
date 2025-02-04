@@ -45,7 +45,7 @@ bind("n", "<leader>d", '"_d', opts)
 bind("n", "x", '"_x', opts)
 
 -- Copy paths
-bind("n", ";yp", function()
+bind("n", ";yr", function()
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
 	print("Copied path to clipboard: " .. path)
@@ -59,6 +59,13 @@ bind("n", ";yf", function()
 	local path = vim.fn.expand("%:t")
 	vim.fn.setreg("+", path)
 	print("Copied filename to clipboard: " .. path)
+end, opts)
+bind("n", ";yp", function()
+	local path = vim.fn.expand("%:p")
+	local cwd = vim.fn.getcwd()
+	local rel_path = path:gsub("^" .. vim.pesc(cwd .. "/"), "")
+	vim.fn.setreg("+", rel_path)
+	print("Copied relative path to clipboard: " .. rel_path)
 end, opts)
 
 ----------------------
