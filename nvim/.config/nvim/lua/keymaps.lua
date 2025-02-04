@@ -44,6 +44,23 @@ bind("v", "<leader>d", '"_d', opts)
 bind("n", "<leader>d", '"_d', opts)
 bind("n", "x", '"_x', opts)
 
+-- Copy paths
+bind("n", ";yp", function()
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	print("Copied path to clipboard: " .. path)
+end, opts)
+bind("n", ";yd", function()
+	local path = vim.fn.expand("%:p:h")
+	vim.fn.setreg("+", path)
+	print("Copied directory path to clipboard: " .. path)
+end, opts)
+bind("n", ";yf", function()
+	local path = vim.fn.expand("%:t")
+	vim.fn.setreg("+", path)
+	print("Copied filename to clipboard: " .. path)
+end, opts)
+
 ----------------------
 -- Plugin Keybinds
 ----------------------
