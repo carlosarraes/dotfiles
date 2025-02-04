@@ -56,13 +56,6 @@ bind("n", "<leader>du", "<cmd>DBUIToggle<cr>", opts) -- open dadbod ui
 bind("n", "<leader>df", "<cmd>DBUIFindBuffer<cr>", opts)
 bind("n", "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", opts)
 
--- FzfLua
-bind("n", ";f", "<cmd>lua require('fzf-lua').files()<cr>", opts)
-bind("n", ";r", "<cmd>lua require('fzf-lua').live_grep_glob()<cr>", opts)
-bind("n", ";d", "<cmd>lua require('fzf-lua').diagnostics_workspace()<cr>", opts)
--- bind("n", ";r", "<cmd>lua require('fzf-lua').live_grep_glob({ filter = \"rg -v '*tests/'\" })<cr>", opts)
-bind("n", ";;", "<cmd>lua require('fzf-lua').resume()<cr>", opts)
-
 -- CChat
 bind("n", ";ct", ":CopilotChatToggle<cr>", opts)
 bind({ "n", "v" }, ";cc", ":CopilotChat<cr>", opts)
