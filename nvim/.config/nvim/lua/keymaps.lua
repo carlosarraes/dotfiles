@@ -103,5 +103,5 @@ bind("n", ";yw", ":YankyRingHistory<CR>", opts)
 bind("n", "<leader>e", ":lua MiniFiles.open()<cr>", opts)
 
 local termtoggle = require("local.term")
-vim.keymap.set("n", "<C-t>", termtoggle.toggleterm, { desc = "toggle terminal" })
-vim.keymap.set("t", "<C-t>", termtoggle.toggleterm, { buffer = termtoggle.buf, desc = "toggle terminal" })
+bind("n", "<C-t>", termtoggle.toggleterm, { desc = "toggle terminal" })
+bind("t", "<C-t>", termtoggle.toggleterm, { buffer = termtoggle.buf, desc = "toggle terminal" })

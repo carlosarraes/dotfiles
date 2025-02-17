@@ -4,6 +4,7 @@ return {
 	config = function()
 		require("mini.ai").setup()
 		require("mini.comment").setup()
+		require("mini.diff").setup()
 		local miniFiles = require("mini.files")
 		miniFiles.setup()
 		require("mini.surround").setup()
