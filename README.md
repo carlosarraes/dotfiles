@@ -10,7 +10,7 @@
 
 ## Terminal
 
-`sudo pacman -S fastfetch neovim vim eza fd bat ncdu btop ripgrep lazygit zoxide lf fzf zip unzip tmux starship yt-dlp`
+`sudo pacman -S fastfetch vim eza fd bat ncdu btop ripgrep lazygit zoxide yazi fzf zip unzip tmux starship yt-dlp`
 
 ## Node
 
@@ -45,11 +45,11 @@ sudo pacman -S $(pacman -Ssq noto-fonts)
 
 [zsh autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+`git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions`
 
 [zsh syntax highlight](https://github.com/zsh-users/zsh-syntax-highlighting)
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+`git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting`
 
 ## Tmux
 
