@@ -7,7 +7,8 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
-bindkey '^K' kill-line
+bindkey '^O' kill-line
+bindkey -v
 
 # Setup
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
