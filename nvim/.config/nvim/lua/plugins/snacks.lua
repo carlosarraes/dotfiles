@@ -47,6 +47,14 @@ return {
 			desc = "Grep",
 		},
 		{
+			";;",
+			function()
+				Snacks.picker.resume()
+			end,
+			desc = "Resume",
+		},
+
+		{
 			";w",
 			function()
 				Snacks.picker.grep_word()
