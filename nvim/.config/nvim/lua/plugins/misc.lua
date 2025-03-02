@@ -3,6 +3,7 @@ return {
 	"tpope/vim-fugitive",
 	"SmiteshP/nvim-navic",
 	"mbbill/undotree",
+	"nvim-tree/nvim-web-devicons",
 	{
 		"tronikelis/ts-autotag.nvim",
 		opts = {},

@@ -80,15 +80,10 @@ bind("n", "<leader>du", "<cmd>DBUIToggle<cr>", opts) -- open dadbod ui
 bind("n", "<leader>df", "<cmd>DBUIFindBuffer<cr>", opts)
 bind("n", "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", opts)
 
--- CChat
-bind("n", ";ct", ":CopilotChatToggle<cr>", opts)
-bind({ "n", "v" }, ";cc", ":CopilotChat<cr>", opts)
-bind({ "n", "v" }, ";co", ":CopilotChatOptimize<cr>", opts)
-bind({ "n", "v" }, ";cp", ":CopilotChatTests<cr>", opts)
-bind({ "n", "v" }, ";ce", ":CopilotChatExplain<cr>", opts)
-bind({ "n", "v" }, ";cr", ":CopilotChatReview<cr>", opts)
-bind({ "n", "v" }, ";cf", ":CopilotChatFix<cr>", opts)
-bind({ "n", "v" }, ";cd", ":CopilotChatFixDiagnostic<cr>", opts)
+-- CCompanion
+bind({ "n", "v" }, ";cc", "<cmd>CodeCompanionChat Toggle<cr>", opts)
+bind({ "n", "v" }, ";ca", "<cmd>CodeCompanionActions<cr>", opts)
+vim.cmd([[cab cc CodeCompanion]])
 
 -- Yanky
 bind({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
