@@ -17,16 +17,16 @@ return {
 			},
 			adapters = {
 				deepseek = function()
-					return require("codecompanion.adapters").extend("deepseek", {
+					return require("codecompanion.adapters").extend("anthropic", {
 						env = {
 						},
 					})
 				end,
 			},
 			strategies = {
-				chat = { adapter = "deepseek" },
-				inline = { adapter = "deepseek" },
-				agent = { adapter = "deepseek" },
+				chat = { adapter = "anthropic" },
+				inline = { adapter = "anthropic" },
+				agent = { adapter = "anthropic" },
 			},
 		})
 	end,
