@@ -9,6 +9,7 @@ return {
 		picker = {
 			matcher = {
 				frecency = true,
+				cwd_bonus = true,
 			},
 			debug = {
 				scores = true,
