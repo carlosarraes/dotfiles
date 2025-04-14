@@ -5,6 +5,10 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 	},
 	config = function()
+		if vim.g.vscode then
+			return
+		end
+
 		require("codecompanion").setup({
 			display = {
 				action_palette = {

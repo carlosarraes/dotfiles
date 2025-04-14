@@ -1,6 +1,10 @@
 return {
 	"nvim-treesitter/nvim-treesitter-context",
 	opts = function()
+		if vim.g.vscode then
+			return
+		end
+
 		local tsc = require("treesitter-context")
 		Snacks.toggle({
 			name = "Treesitter Context",
