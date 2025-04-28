@@ -86,13 +86,15 @@ bind({ "n", "v" }, ";ca", "<cmd>CodeCompanionActions<cr>", opts)
 vim.cmd([[cab cc CodeCompanion]])
 
 -- Yanky
-bind({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
-bind({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
-bind({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
-bind({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
-bind("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
-bind("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
-bind("n", ";yw", ":YankyRingHistory<CR>", opts)
+if not vim.g.vscode then
+	bind({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
+	bind({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
+	bind({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
+	bind({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
+	bind("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
+	bind("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
+	bind("n", ";yw", ":YankyRingHistory<CR>", opts)
+end
 
 -- MiniFiles
 bind("n", "<leader>e", ":lua MiniFiles.open()<cr>", opts)
