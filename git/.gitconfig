@@ -18,3 +18,7 @@
 	diffFilter = delta --color-only
 [merge]
 	conflictStyle = zdiff3
+[difftool "difft"]
+	cmd = difft \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = true
