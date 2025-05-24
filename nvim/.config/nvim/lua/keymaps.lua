@@ -102,6 +102,3 @@ bind("n", "<leader>e", ":lua MiniFiles.open()<cr>", opts)
 -- MCPHub
 bind("n", ";h", ":MCPHub<cr>", opts)
 
-local termtoggle = require("local.term")
-bind("n", "<C-t>", termtoggle.toggleterm, { desc = "toggle terminal" })
-bind("t", "<C-t>", termtoggle.toggleterm, { buffer = termtoggle.buf, desc = "toggle terminal" })
