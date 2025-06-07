@@ -39,6 +39,7 @@ return {
 				},
 			},
 			filetypes = {
+				markdown = true,
 				help = false,
 				gitcommit = false,
 				gitrebase = false,
