@@ -31,6 +31,25 @@ alias h='http'
 alias cat='bat'
 alias ff='fastfetch'
 
+# Claude
+alias claude="/home/carraes/.claude/local/claude"
+
+function c() {
+  if [ $# -eq 0 ]; then
+    claude
+    return
+  fi
+
+  if [[ "$1" == -* ]]; then
+    claude "$@"
+    return
+  fi
+
+  claude -p "$*"
+}
+
+alias cr='claude --resume'
+
 # lazy
 alias lzg='lazygit'
 alias lzd='lazydocker'
