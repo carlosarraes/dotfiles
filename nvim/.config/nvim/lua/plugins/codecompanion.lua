@@ -10,7 +10,7 @@ return {
 				deepseek = function()
 					return require("codecompanion.adapters").extend("deepseek", {
 						env = {
-							api_key = "",
+							api_key = "sk-a10f7bff6757489dbc4b2245a88c46d4",
 						},
 						schema = {
 							model = {
@@ -39,16 +39,6 @@ return {
 			diff = {
 				enabled = true,
 				provider = "mini_diff",
-			},
-			extensions = {
-				mcphub = {
-					callback = "mcphub.extensions.codecompanion",
-					opts = {
-						show_result_in_chat = true,
-						make_vars = true,
-						make_slash_commands = true,
-					},
-				},
 			},
 		})
 	end,
