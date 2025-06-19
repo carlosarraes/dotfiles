@@ -30,6 +30,7 @@ alias ....='cd ../../..'
 alias h='http'
 alias cat='bat'
 alias ff='fastfetch'
+alias gp='glow -p'
 
 # Claude
 alias claude="/home/carraes/.claude/local/claude"
@@ -187,3 +188,6 @@ eval "$(direnv hook zsh)"
 
 # bun completions
 [ -s "/home/carraes/.bun/_bun" ] && source "/home/carraes/.bun/_bun"
+
+# scripts
+export PATH="$PATH:/home/carraes/scripts"
