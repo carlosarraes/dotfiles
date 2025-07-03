@@ -6,6 +6,7 @@ return {
 		end
 
 		local navic = require("nvim-navic")
+		local token_counter = require("local.token_counter")
 
 		require("lualine").setup({
 			options = {
@@ -16,6 +17,16 @@ return {
 			},
 			sections = {
 				lualine_x = {
+					{
+						function()
+							return token_counter.get_status()
+						end,
+						cond = function()
+							local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+							return #content > 0 and table.concat(content, "") ~= ""
+						end,
+						color = { fg = "#7aa2f7" },
+					},
 					{
 						require("noice").api.statusline.mode.get,
 						cond = require("noice").api.statusline.mode.has,
@@ -33,6 +44,25 @@ return {
 					},
 				},
 			},
+		})
+
+		-- Set up token counting on buffer changes with debouncing
+		local timer = vim.loop.new_timer()
+		local function schedule_token_count()
+			timer:stop()
+			timer:start(1000, 0, vim.schedule_wrap(function()
+				token_counter.count_tokens(function()
+					-- Force lualine refresh
+					vim.cmd('redrawstatus')
+				end)
+			end))
+		end
+
+		-- Create autocommands for token counting
+		local group = vim.api.nvim_create_augroup("TokenCounter", { clear = true })
+		vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "BufEnter" }, {
+			group = group,
+			callback = schedule_token_count,
 		})
 	end,
 }

@@ -99,6 +99,15 @@ end
 -- MiniFiles
 bind("n", "<leader>e", ":lua MiniFiles.open()<cr>", opts)
 
--- MCPHub
-bind("n", ";h", ":MCPHub<cr>", opts)
-
+-- RemoveComments
+vim.api.nvim_create_user_command("RemoveComments", function(args)
+	local comments = require("local.comments")
+	local comment_type = args.args ~= "" and args.args or nil
+	comments.remove_comments(comment_type)
+end, {
+	nargs = "?",
+	complete = function()
+		return { "line", "block" }
+	end,
+	desc = "Remove comments from current buffer. Use 'line' or 'block' to filter comment types.",
+})

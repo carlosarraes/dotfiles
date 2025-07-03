@@ -10,7 +10,7 @@ return {
 				deepseek = function()
 					return require("codecompanion.adapters").extend("deepseek", {
 						env = {
-							api_key = "sk-a10f7bff6757489dbc4b2245a88c46d4",
+							api_key = "",
 						},
 						schema = {
 							model = {

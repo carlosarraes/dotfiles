@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lua:*)",
+      "WebFetch(domain:gist.github.com)"
+    ]
+  },
+  "enableAllProjectMcpServers": false
+}
