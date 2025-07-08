@@ -28,7 +28,6 @@ opt.cursorline = true
 -- Appearence
 opt.signcolumn = "yes"
 
-
 -- Backspace
 opt.backspace = "indent,eol,start"
 
@@ -46,6 +45,3 @@ opt.swapfile = false
 opt.backup = false
 opt.undodir = vim.fn.stdpath("config") .. "~/.config/undodir"
 opt.undofile = true
-
--- Obsidian
-opt.conceallevel = 2
