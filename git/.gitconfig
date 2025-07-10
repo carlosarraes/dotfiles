@@ -9,14 +9,14 @@
 	rebase = false
 [core]
 	editor = nvim
-  pager = delta
+	pager = diff-so-fancy | less --tabs=4 -RF
 	excludesfile = /home/carraes/.gitignore_global
 [delta]
   line-numbers = true
   side-by-side = true
 	navigate = true
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = diff-so-fancy --patch
 [merge]
 	conflictStyle = zdiff3
 [difftool "difft"]
