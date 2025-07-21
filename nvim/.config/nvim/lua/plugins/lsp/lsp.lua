@@ -101,16 +101,6 @@ return {
 		lspconfig["pyright"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			settings = {
-				python = {
-					analysis = {
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
-						diagnosticMode = "workspace",
-						typeCheckingMode = "basic",
-					},
-				},
-			},
 		})
 
 		lspconfig["rust_analyzer"].setup({
@@ -144,10 +134,5 @@ return {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
-
-		-- lspconfig["ngserver"].setup({
-		--   capabilities = capabilities,
-		--   on_attach = on_attach,
-		-- })
 	end,
 }
