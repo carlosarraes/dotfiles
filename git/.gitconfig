@@ -9,17 +9,23 @@
 	rebase = false
 [core]
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=4 -RF
+	pager = delta
 	excludesfile = /home/carraes/.gitignore_global
 [delta]
   line-numbers = true
   side-by-side = true
 	navigate = true
+	light = false
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 [merge]
-	conflictStyle = zdiff3
+	conflictstyle = diff3
 [difftool "difft"]
 	cmd = difft \"$LOCAL\" \"$REMOTE\"
 [difftool]
 	prompt = true
+[diff-so-fancy]
+	stripLeadingSymbols = false
+[diff]
+	algorithm = histogram
+	colorMoved = default
