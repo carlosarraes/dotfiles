@@ -22,7 +22,6 @@ return {
 				"cssls",
 				"tailwindcss",
 				"emmet_ls",
-				"pyright",
 				"lua_ls",
 				"rust_analyzer",
 				"gopls",

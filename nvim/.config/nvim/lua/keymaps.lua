@@ -96,6 +96,9 @@ if not vim.g.vscode then
 	bind("n", ";yw", ":YankyRingHistory<CR>", opts)
 end
 
+-- Neogit
+bind("n", ";n", ":Neogit<CR>", opts) -- open Neogit
+
 -- MiniFiles
 bind("n", "<leader>e", ":lua MiniFiles.open()<cr>", opts)
 

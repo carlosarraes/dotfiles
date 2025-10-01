@@ -134,5 +134,13 @@ return {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
+
+		lspconfig["zls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			cmd = { "zls" },
+			filetypes = { "zig" },
+			root_dir = util.root_pattern("build.zig", "build.zig.lock", "build.zig.json", ".git"),
+		})
 	end,
 }
