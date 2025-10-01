@@ -56,7 +56,6 @@ source /usr/share/fzf/completion.zsh
 # Completion scripts for other tools
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"   # nvm completion
 [ -s "/home/carraes/.bun/_bun" ] && source "/home/carraes/.bun/_bun" # bun completion
-[ -f <(ng completion script) ] && source <(ng completion script)     # Angular CLI completion
 
 # =============================================================================
 # 3. TOOL INITIALIZATION (EVALS)
@@ -76,6 +75,7 @@ bindkey "^[[F" end-of-line
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 bindkey '^O' kill-line
+bindkey -r '^J'
 bindkey -v
 
 # =============================================================================
@@ -93,6 +93,8 @@ alias lda='eza -als mod --group-directories-first --color=always'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias webcam="ffplay /dev/video2"
+alias glp="eza ~/Pictures/*hyprshot.png -s modified -r | head -n 1 | wl-copy"
 
 # Replacements & Shortcuts
 alias cat='bat'
@@ -177,6 +179,10 @@ vr() {
     local filename=$(echo $selection | cut -d' ' -f2-)
     nvim "$linecmd" "$filename"
   fi
+}
+
+git-edit() {
+  git diff-tree --no-commit-id --name-only -r "$1" | xargs nvim
 }
 
 # Create a directory and cd into it
@@ -283,8 +289,8 @@ y() {
 
 # Git helper to find the development branch name
 git_develop_branch() {
-  if git show-ref --verify --quiet refs/heads/homolog; then
-    echo "homolog"
+  if git show-ref --verify --quiet refs/heads/develop; then
+    echo "develop"
   elif git show-ref --verify --quiet refs/heads/development; then
     echo "development"
   elif git show-ref --verify --quiet refs/heads/dev; then
