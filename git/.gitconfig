@@ -29,3 +29,5 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
+[credential]
+	helper = store

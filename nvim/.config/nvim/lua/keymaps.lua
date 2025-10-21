@@ -1,9 +1,17 @@
 local bind = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+vim.g.mapleader = " "
+
 -- General
 bind("n", "<C-s>", ":w<CR>", opts)
 bind("n", "<leader>nh", ":nohl<CR>", opts)
+bind("n", "<space>", "<Nop>")
+bind("n", "x", '"_x', opts)
+bind("n", ";a", ":lua vim.lsp.buf.format()<CR>", opts) -- Format the current buffer using LSP
+bind("v", "<Leader>p", '"_dP') -- Paste without overwriting the default register
+bind("x", "y", [["+y]], opts) -- Yank to the system clipboard in visual mode
+bind("t", "<Esc>", "<C-\\><C-N>") -- Exit terminal mode
 
 -- Window management
 bind("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
@@ -14,35 +22,11 @@ bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 -- Buffer management
 bind("n", "<tab>", ":bnext<CR>", opts) -- next buffer
 bind("n", "<s-tab>", ":bprev<CR>", opts) -- previous buffer
+bind("n", "<leader>x", ":bd<CR>", opts) -- close current buffer
 
 -- Tabs
 bind("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
 bind("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
-
--- QoL
-bind("n", "<leader>q", ":q<CR>", opts)
-bind("n", "<leader>Q", ":qa!<CR>", opts)
-bind("v", "J", ":m '>+1<CR>gv=gv", opts)
-bind("v", "K", ":m '<-2<CR>gv=gv", opts)
-bind("n", "J", "mzgJ`z", opts)
-bind("n", "<C-d>", "<C-d>zz", opts)
-bind("n", "<C-u>", "<C-u>zz", opts)
-bind("n", "<C-Down>", "<C-d>zz", opts)
-bind("n", "<C-Up>", "<C-u>zz", opts)
-bind("n", "n", "nzzzv", opts)
-bind("n", "N", "Nzzzv", opts)
-bind("n", "<leader>p", "cw<C-r>0<ESC>b", opts)
-bind("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts) -- replace word under cursor
-bind("v", "<leader>/", "<esc>/\\%V", opts) -- search within selection
-bind("n", "<Return>", "o<ESC>k", opts)
-bind("n", "<leader>5", ":UndotreeToggle<CR>", opts)
-
--- Clipboard/Yanks
-bind("v", "<leader>y", '"+y', opts) -- Needs xclip (Arch)
-bind("n", "<leader>y", '"+y', opts)
-bind("v", "<leader>d", '"_d', opts)
-bind("n", "<leader>d", '"_d', opts)
-bind("n", "x", '"_x', opts)
 
 -- Copy paths
 bind("n", ";yr", function()
@@ -68,39 +52,46 @@ bind("n", ";yp", function()
 	print("Copied relative path to clipboard: " .. rel_path)
 end, opts)
 
-----------------------
--- Plugin Keybinds
-----------------------
+-- QoL
+bind("n", "<leader>q", ":q<CR>", opts)
+bind("n", "<leader>Q", ":qa!<CR>", opts)
+bind("v", "J", ":m '>+1<CR>gv=gv", opts)
+bind("v", "K", ":m '<-2<CR>gv=gv", opts)
+bind("n", "J", "mzgJ`z", opts)
+bind("n", "<C-d>", "<C-d>zz", opts)
+bind("n", "<C-u>", "<C-u>zz", opts)
+bind("n", "<C-Down>", "<C-d>zz", opts)
+bind("n", "<C-Up>", "<C-u>zz", opts)
+bind("n", "n", "nzzzv", opts)
+bind("n", "N", "Nzzzv", opts)
+bind("n", "<leader>p", "cw<C-r>0<ESC>b", opts)
+bind("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts) -- replace word under cursor
+bind("v", "<leader>/", "<esc>/\\%V", opts) -- search within selection
+bind("n", "<Return>", "o<ESC>k", opts)
+bind("n", "<leader>5", ":UndotreeToggle<CR>", opts)
 
--- Lazy
-bind("n", "<leader>l", ":Lazy<CR>", opts)
+-- Vim pack
+bind("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>")
 
--- Dadbod
-bind("n", "<leader>du", "<cmd>DBUIToggle<cr>", opts) -- open dadbod ui
-bind("n", "<leader>df", "<cmd>DBUIFindBuffer<cr>", opts)
-bind("n", "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", opts)
+-- LSP
+bind("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- Hover to see details
+bind("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- Hover to see details
+bind("n", "gi", function()
+	vim.lsp.buf.implementation({ border = "single" })
+end, opts)
+bind("n", "gr", "<cmd>lua require('fzf-lua').lsp_references()<cr>", opts)
+bind("n", "<C-n>", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, opts)
+bind("n", "<C-p>", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, opts)
+bind("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
+bind("n", "gD", "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition in a vertical split
 
--- CCompanion
-bind({ "n", "v" }, ";cc", "<cmd>CodeCompanionChat Toggle<cr>", opts)
-bind({ "n", "v" }, ";ca", "<cmd>CodeCompanionActions<cr>", opts)
-vim.cmd([[cab cc CodeCompanion]])
-
--- Yanky
-if not vim.g.vscode then
-	bind({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
-	bind({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
-	bind({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
-	bind({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
-	bind("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
-	bind("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
-	bind("n", ";yw", ":YankyRingHistory<CR>", opts)
-end
-
--- Neogit
-bind("n", ";n", ":Neogit<CR>", opts) -- open Neogit
-
--- MiniFiles
-bind("n", "<leader>e", ":lua MiniFiles.open()<cr>", opts)
-
--- Exit terminal mode
-bind("t", "jk", "<C-\\><C-n>", opts)
+-- FzfLua
+bind("n", ";f", "<cmd>lua require('fzf-lua').files()<cr>", opts)
+bind("n", ";r", "<cmd>lua require('fzf-lua').live_grep()<cr>", opts)
+bind("n", ";d", "<cmd>lua require('fzf-lua').diagnostics_workspace()<cr>", opts)
+-- bind("n", ";r", "<cmd>lua require('fzf-lua').live_grep_glob({ filter = \"rg -v '*tests/'\" })<cr>", opts)
+bind("n", ";;", "<cmd>lua require('fzf-lua').resume()<cr>", opts)
