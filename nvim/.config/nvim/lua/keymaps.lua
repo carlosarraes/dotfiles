@@ -23,6 +23,7 @@ bind("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 bind("n", "<tab>", ":bnext<CR>", opts) -- next buffer
 bind("n", "<s-tab>", ":bprev<CR>", opts) -- previous buffer
 bind("n", "<leader>x", ":bd<CR>", opts) -- close current buffer
+bind("n", "<leader>X", ":bw!<CR>", opts) -- close current buffer
 
 -- Tabs
 bind("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
@@ -72,6 +73,7 @@ bind("n", "<leader>5", ":UndotreeToggle<CR>", opts)
 
 -- Vim pack
 bind("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>")
+-- MasonInstall eslint_d@13.1.2
 
 -- LSP
 bind("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- Hover to see details

@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "327fff9",
+      "rev": "4b18c32",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
@@ -10,35 +10,35 @@
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
     "conform.nvim": {
-      "rev": "fbcb4fa",
+      "rev": "c2526f1",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fzf-lua": {
-      "rev": "c102a4e",
+      "rev": "fb8c50b",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "20ad441",
+      "rev": "f7cc685",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lualine.nvim": {
-      "rev": "3946f01",
+      "rev": "47f91c4",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason.nvim": {
-      "rev": "ad7146a",
+      "rev": "44d1e90",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "14145d3",
+      "rev": "e5a9a38",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "multicursor.nvim": {
-      "rev": "0c6ceae",
+      "rev": "630dd29",
       "src": "https://github.com/jake-stewart/multicursor.nvim"
     },
     "noice.nvim": {
-      "rev": "db24837",
+      "rev": "7bfd942",
       "src": "https://github.com/folke/noice.nvim"
     },
     "nui.nvim": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-lint": {
-      "rev": "9da1fb9",
+      "rev": "bcd1a44",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-treesitter": {
@@ -54,7 +54,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-ts-autotag": {
-      "rev": "c4ca798",
+      "rev": "8e1c0a3",
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "supermaven-nvim": {
@@ -62,11 +62,11 @@
       "src": "https://github.com/supermaven-inc/supermaven-nvim"
     },
     "tokyonight.nvim": {
-      "rev": "e63c42a",
+      "rev": "5da1b76",
       "src": "https://github.com/folke/tokyonight.nvim"
     },
     "vim-tmux-navigator": {
-      "rev": "c45243d",
+      "rev": "e41c431",
       "src": "https://github.com/christoomey/vim-tmux-navigator"
     }
   }

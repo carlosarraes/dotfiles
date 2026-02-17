@@ -1,0 +1,13 @@
+---@type vim.lsp.Config
+return {
+	cmd = { "gopls", "serve" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_markers = { "go.mod", ".git" },
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+		},
+	},
+}
