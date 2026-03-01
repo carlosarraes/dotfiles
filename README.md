@@ -58,3 +58,17 @@ sudo pacman -S $(pacman -Ssq noto-fonts)
 ## RustUp
 
 `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+
+## Hyprland
+
+You need to install `cpio`.
+
+`sudo pacman -S cpio`
+
+Then you can install hyprland `hy3` plugin with `hyprpm`.
+
+`hyprpm update`
+
+`hyprpm add https://github.com/outfoxxed/hy3`
+
+`hyprpm enable hy3`
