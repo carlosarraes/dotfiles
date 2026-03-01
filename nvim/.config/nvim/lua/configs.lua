@@ -54,6 +54,6 @@ opt.winborder = "rounded" -- Use rounded borders for windows
 opt.laststatus = 0 -- Only show status line in last window
 opt.cmdheight = 1
 -- vim.opt.statusline = '%F'
+opt.splitbelow = true
 
 vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and indentation
-
