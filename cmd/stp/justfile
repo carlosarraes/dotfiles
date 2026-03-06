@@ -1,0 +1,8 @@
+binary := "stp"
+build_dir := "bin"
+
+build:
+    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o {{build_dir}}/{{binary}}-linux-amd64 .
+
+clean:
+    rm -rf {{build_dir}}
