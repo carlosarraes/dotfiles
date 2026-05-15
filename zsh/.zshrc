@@ -120,7 +120,7 @@ alias gc='git cherry-pick'
 alias gfp='git fetch -p && git pull'
 alias gcm='git checkout master'
 alias gcb='git checkout -b'
-alias gcc='git checkout'
+# alias gcc='git checkout'
 alias gs='git switch'
 alias gsc='git switch -c'
 alias gsd='git switch $(git_develop_branch)'
@@ -216,19 +216,19 @@ rebuild() {
 
   local service=$1
   echo "Stopping $service..."
-  docker compose -f docker-compose-build-lite.yml stop $service
+  docker compose -f compose/build-lite.yml stop $service
 
   echo "Removing $service..."
-  docker compose -f docker-compose-build-lite.yml rm -f $service
+  docker compose -f compose/build-lite.yml rm -f $service
 
   echo "Building $service..."
-  docker compose -f docker-compose-build-lite.yml build $service
+  docker compose -f compose/build-lite.yml build $service
 
   echo "Starting $service..."
-  docker compose -f docker-compose-build-lite.yml up -d $service
+  docker compose -f compose/build-lite.yml up -d $service
 
   echo "Showing logs..."
-  docker compose -f docker-compose-build-lite.yml logs -f $service
+  docker compose -f compose/build-lite.yml logs -f $service
 }
 
 # Git cherry-pick a range of commits
