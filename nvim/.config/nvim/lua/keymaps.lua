@@ -70,6 +70,10 @@ bind("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], o
 bind("v", "<leader>/", "<esc>/\\%V", opts) -- search within selection
 bind("n", "<Return>", "o<ESC>k", opts)
 bind("n", "<leader>5", ":UndotreeToggle<CR>", opts)
+bind("n", ";w", function()
+	vim.wo.wrap = not vim.wo.wrap
+	print("wrap " .. (vim.wo.wrap and "on" or "off"))
+end, opts)
 
 -- Vim pack
 bind("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>")
