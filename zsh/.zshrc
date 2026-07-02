@@ -128,6 +128,11 @@ alias gsm='git switch $(git_main_branch)'
 alias gpo='git push origin'
 alias gmm='git merge master'
 
+# Development
+alias mondrio-dev='ssh -fNL 8080:localhost:8080 -L 8000:localhost:8000 -o ExitOnForwardFailure=yes mac'
+alias zapsign-dev='ssh -fNL 3001:localhost:3001 -L 3002:localhost:3002 -L 4200:localhost:4200 -L 9876:localhost:9876 -L 3000:localhost:3000 -o ExitOnForwardFailure=yes zapsign'
+
+
 
 # =============================================================================
 # 6. FUNCTIONS
@@ -136,12 +141,12 @@ alias gmm='git merge master'
 # Claude helper
 c() {
   if [ $# -eq 0 ]; then
-    claude
+    claude --effort high
     return
   fi
 
   if [[ "$1" == -* ]]; then
-    claude "$@"
+    claude --effort high "$@"
     return
   fi
 
@@ -340,6 +345,14 @@ extract() {
     else
         echo "'$1' is not a valid file"
     fi
+}
+
+stop-dev() { ssh -O exit "${1:-mac}"; }
+
+list-dev() {
+  for h in mac zapsign; do
+    ssh -O check "$h" 2>&1 | grep -q running && echo "$h: up" || echo "$h: down"
+  done
 }
 
 # opencode
