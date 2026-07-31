@@ -355,5 +355,39 @@ list-dev() {
   done
 }
 
+# Render a remote file (image, pdf, video) in the terminal via mcat
+rcat() {
+  if [ -z "$1" ]; then
+    echo "Usage: rcat [host] <remote-path>"
+    return 1
+  fi
+
+  # Not named `path`: that is tied to $PATH in zsh, even when declared local
+  local host file
+  if [ -n "$2" ]; then
+    host="$1"; file="$2"
+  else
+    host="zapsign"; file="$1"
+  fi
+
+  # The remote shell parses this a second time: (q) protects spaces, but a
+  # leading ~ must reach it unquoted or it won't be expanded there
+  local remote
+  case $file in
+    '~')    remote='~' ;;
+    '~'*/*) remote="${file%%/*}/${(q)${file#*/}}" ;;
+    '~'*)   remote="$file" ;;
+    *)      remote="${(q)file}" ;;
+  esac
+
+  ssh "$host" "cat -- $remote" | mcat -i --silent
+
+  # ~ is expanded locally unless quoted, so a failed local-looking path is
+  # almost always a missing pair of quotes
+  if (( pipestatus[1] != 0 )) && [[ $file == $HOME/* ]]; then
+    print -u2 "rcat: '$file' expanded locally — try: rcat $host '~/${file#$HOME/}'"
+  fi
+}
+
 # opencode
 export PATH=/home/carraes/.opencode/bin:$PATH
