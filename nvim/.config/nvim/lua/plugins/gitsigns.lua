@@ -7,7 +7,7 @@ require("gitsigns").setup({
 			opts.buffer = bufnr
 			vim.keymap.set(mode, l, r, opts)
 		end
-		map("n", ";w", gs.toggle_current_line_blame)
+		map("n", ";b", gs.toggle_current_line_blame)
 		map("n", ";q", gs.toggle_deleted)
 	end,
 })

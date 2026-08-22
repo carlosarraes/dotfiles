@@ -14,7 +14,7 @@ local plugins = {
 	{ name = "gitsigns", src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ name = "multicursor", src = "https://github.com/jake-stewart/multicursor.nvim" },
 	{ name = "vim-tmux-navigator", src = "https://github.com/christoomey/vim-tmux-navigator" },
-	{ name = "treesitter", src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ name = "treesitter", src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ name = "autotag", src = "https://github.com/windwp/nvim-ts-autotag" },
 }
 
@@ -25,5 +25,10 @@ end
 vim.pack.add(pack_specs, { load = true })
 
 for _, p in ipairs(plugins) do
-	pcall(require, "plugins." .. p.name)
+	local ok, err = pcall(require, "plugins." .. p.name)
+	-- a missing config file is fine; anything else is a real error worth surfacing
+	local missing = "module '" .. vim.pesc("plugins." .. p.name) .. "' not found"
+	if not ok and not tostring(err):match(missing) then
+		vim.notify(("plugins.%s: %s"):format(p.name, err), vim.log.levels.ERROR)
+	end
 end
