@@ -70,4 +70,20 @@ DRY_RUN=1
 out=$(run pacman -Syu)
 case "$out" in "[dry-run] pacman -Syu") echo "ok   - dry-run prints command";; *) echo "FAIL - run/dry-run got: $out"; fail=1;; esac
 
+# --- Task 4 fix round 1: multi-word distro fields must split into elements ---
+DISTRO=arch
+NONINTERACTIVE=1
+SELECTED_GROUPS=fonts
+pick_packages
+if [ "${#SELECTED_PKGS[@]}" -eq 4 ] && ! printf '%s\n' "${SELECTED_PKGS[@]}" | grep -q ' '; then
+  echo "ok   - nerd-fonts multi-package field splits into individual elements"
+else
+  echo "FAIL - expected 4 split elements, got ${#SELECTED_PKGS[@]}: ${SELECTED_PKGS[*]:-}"; fail=1
+fi
+
+# empty selection must not trip set -u
+SELECTED_GROUPS=
+pick_packages
+echo "ok   - empty group list leaves SELECTED_PKGS empty without error"
+
 rm -rf "$tmp"; exit $fail

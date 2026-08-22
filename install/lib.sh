@@ -72,16 +72,17 @@ pick_groups() {
 
 pick_packages() {
   SELECTED_PKGS=()
-  local g entry picked
+  local g p picked
   for g in $SELECTED_GROUPS; do
     local names=()
-    while IFS=: read -r _ dpkg; do names+=("$dpkg"); done < <(catalog_packages "$g")
+    # a distro field may list several packages space-separated: split them all
+    while IFS=: read -r _ dpkg; do for p in $dpkg; do names+=("$p"); done; done < <(catalog_packages "$g")
     [ ${#names[@]} -gt 0 ] || continue
     if [ "${NONINTERACTIVE:-0}" = "1" ]; then
       SELECTED_PKGS+=("${names[@]}")
     else
       mapfile -t picked < <(printf '%s\n' "${names[@]}" | gum choose --height 15 --no-limit || true)
-      SELECTED_PKGS+=("${picked[@]}")
+      if [ "${#picked[@]}" -gt 0 ]; then SELECTED_PKGS+=("${picked[@]}"); fi
     fi
   done
 }
@@ -94,7 +95,10 @@ pick_stow_targets() {
     case "$dir" in docs|install|tests|.git) continue ;; esac
     [ -n "$(find "$repo/$dir" -maxdepth 0 -type d 2>/dev/null)" ] && all+=("$dir")
   done
-  if [ "${NONINTERACTIVE:-0}" = "1" ]; then SELECTED_STOW=("${all[@]}"); return; fi
+  if [ "${NONINTERACTIVE:-0}" = "1" ]; then
+    if [ "${#all[@]}" -gt 0 ]; then SELECTED_STOW=("${all[@]}"); else SELECTED_STOW=(); fi
+    return
+  fi
   mapfile -t SELECTED_STOW < <(printf '%s\n' "${all[@]}" | gum choose --height 15 --no-limit || true)
 }
 
