@@ -30,10 +30,14 @@ run() {
   "$@"
 }
 
+run_root() {
+  if [ "$(id -u)" -eq 0 ]; then run "$@"; else run sudo "$@"; fi
+}
+
 pkg_install() { # install a space-separated list of distro packages
   case "${PKG:-}" in
-    pacman) run sudo pacman -S --needed --noconfirm "$@" ;;
-    apt)    run sudo apt-get install -y "$@" ;;
+    pacman) run_root pacman -Syu --needed --noconfirm "$@" ;;
+    apt)    run_root apt-get install -y "$@" ;;
     *)      die "unknown package manager: ${PKG:-unset} (run detect_distro first)" ;;
   esac
 }
@@ -42,7 +46,7 @@ bootstrap() {
   export DEBIAN_FRONTEND=noninteractive
   [ "$(id -u)" -eq 0 ] || run sudo -v
   if [ "$DISTRO" = "debian" ]; then
-    run sudo apt-get update
+    run_root apt-get update
     pkg_install curl ca-certificates git stow
   else
     pkg_install curl git stow
@@ -195,4 +199,5 @@ summary() {
     log "all steps completed without failures"
   fi
   command -v zsh >/dev/null && log "reminder: chsh -s \"$(command -v zsh)\" to make zsh your default shell"
+  return 0
 }

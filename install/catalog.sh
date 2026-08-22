@@ -32,7 +32,7 @@ CATALOG=(
   "hyprpaper|hyprpaper|-|wayland"
   "hyprshot|hyprshot|-|wayland"
   "dunst|dunst|dunst|wayland"
-  "cliphist|cliphist|cliphist|wayland"
+  "cliphist|cliphist|-|wayland"
 
   "nerd-fonts|ttf-firacode-nerd ttf-hack-nerd ttf-nerd-fonts-symbols-mono|fonts-firacode|fonts"
   "noto-fonts|noto-fonts|fonts-noto-core|fonts"
@@ -43,7 +43,7 @@ CATALOG=(
   "man-pages|man-pages|manpages-dev|manpages"
 
   "pavucontrol|pavucontrol|pavucontrol|apps"
-  "scrcpy|scrcpy|scrcpy|apps"
+  "scrcpy|scrcpy|-|apps"
   "chromium|chromium|chromium|apps"
   "zathura|zathura|zathura|apps"
   "zathura-pdf|zathura-pdf-poppler|-|apps"
