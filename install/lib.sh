@@ -44,7 +44,8 @@ pkg_install() { # install a space-separated list of distro packages
 
 bootstrap() {
   export DEBIAN_FRONTEND=noninteractive
-  [ "$(id -u)" -eq 0 ] || run sudo -v
+  # NOTE: no `sudo -v` here — it forces password auth and breaks passwordless
+  # accounts (e.g. Pi with NOPASSWD); per-command sudo handles itself.
   if [ "$DISTRO" = "debian" ]; then
     run_root apt-get update
     pkg_install curl ca-certificates git stow
