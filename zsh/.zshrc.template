@@ -24,7 +24,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # asdf version manager
 # Note: asdf.sh handles its own path exporting
 # @if asdf
-. "$HOME/.asdf/asdf.sh"
+if [ -r "$HOME/.asdf/asdf.sh" ]; then . "$HOME/.asdf/asdf.sh"; fi
 # @end
 
 # nvm (Node Version Manager)
@@ -39,7 +39,7 @@ export PATH="$PATH:$HOME/.turso"
 # @end
 
 # Custom user scripts directory
-export PATH="$PATH:/home/carraes/scripts"
+export PATH="$PATH:$HOME/scripts"
 
 # Source environment file from .local/bin (often used by installers)
 # This is likely where the `atuin` binary path is added.
@@ -54,26 +54,26 @@ autoload -Uz compinit
 compinit
 
 # Zsh plugins
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -r "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"; fi
+if [ -r "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"; fi
 
 # FZF (Fuzzy Finder)
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+if [ -r /usr/share/fzf/key-bindings.zsh ]; then source /usr/share/fzf/key-bindings.zsh; fi
+if [ -r /usr/share/fzf/completion.zsh ]; then source /usr/share/fzf/completion.zsh; fi
 
 # Completion scripts for other tools
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"   # nvm completion
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun" # bun completion
+if [ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/bash_completion" ]; then \. "$NVM_DIR/bash_completion"; fi # nvm completion
+if [ -s "$HOME/.bun/_bun" ]; then source "$HOME/.bun/_bun"; fi # bun completion
 
 # =============================================================================
 # 3. TOOL INITIALIZATION (EVALS)
 # =============================================================================
 # With the PATH set and plugins loaded, these tools will initialize correctly.
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+if command -v starship >/dev/null; then eval "$(starship init zsh)"; fi
+if command -v zoxide >/dev/null; then eval "$(zoxide init zsh)"; fi
 # @if atuin
-eval "$(atuin init zsh --disable-up-arrow)"
+if command -v atuin >/dev/null; then eval "$(atuin init zsh --disable-up-arrow)"; fi
 # @end
 
 # =============================================================================

@@ -86,6 +86,62 @@ SELECTED_GROUPS=
 pick_packages
 echo "ok   - empty group list leaves SELECTED_PKGS empty without error"
 
+pick_stow_targets "$PWD"
+if printf '%s\n' "${SELECTED_STOW[@]}" | grep -qx cmd; then
+  echo "FAIL - cmd must not be offered as a stow target"; fail=1
+else
+  echo "ok   - cmd excluded from stow targets"
+fi
+
+set +e
+usage_out=$(bash install.sh --repo 2>&1)
+usage_status=$?
+set -e
+if [ "$usage_status" -eq 1 ] && printf '%s\n' "$usage_out" | grep -q '^usage:'; then
+  echo "ok   - bare --repo prints usage and exits 1"
+else
+  echo "FAIL - bare --repo status=$usage_status output=$usage_out"; fail=1
+fi
+
+fakebin=$(mktemp -d)
+cat > "$fakebin/curl" <<'EOF'
+#!/usr/bin/env bash
+exit 42
+EOF
+chmod +x "$fakebin/curl"
+old_path=$PATH
+PATH="$fakebin:$PATH"
+DRY_RUN=0
+FAILED=()
+SKIPPED=()
+SELECTED_DEPS=atuin
+install_zsh_deps
+if printf '%s\n' "${FAILED[@]}" | grep -qx atuin && printf '%s\n' "${SKIPPED[@]}" | grep -qx dep:atuin; then
+  echo "ok   - curl pipeline failure is recorded"
+else
+  echo "FAIL - curl pipeline failure was masked"; fail=1
+fi
+PATH=$old_path
+DRY_RUN=1
+rm -rf "$fakebin"
+
+stow_home=$(mktemp -d)
+mkdir -p "$stow_home/nvim"
+old_home=$HOME
+HOME=$stow_home
+SELECTED_STOW=(nvim tmux)
+FAILED=()
+STOWED=()
+SKIPPED=()
+stow_configs "$PWD" >/dev/null 2>&1
+if [ "${STOWED[*]}" = "tmux" ] && [ "${SKIPPED[*]}" = "stow:nvim" ]; then
+  echo "ok   - stow summary separates successful and skipped targets"
+else
+  echo "FAIL - stow tracking stowed=${STOWED[*]:-} skipped=${SKIPPED[*]:-}"; fail=1
+fi
+HOME=$old_home
+rm -rf "$stow_home"
+
 # --- Task 6 fix round 1: dry-run generation must not write under HOME ---
 test_home=$(mktemp -d)
 old_home=$HOME

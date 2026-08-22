@@ -36,4 +36,13 @@ test "$source_hash" = "$(sha256sum zsh/.zshrc | cut -d' ' -f1)" \
 grep -q '\. "$HOME/.asdf/asdf.sh"' "$sandbox/.zshrc" \
   || { echo "FAIL - selected asdf block missing"; exit 1; }
 
+if command -v zsh >/dev/null; then
+  zsh_err="$sandbox/zsh.stderr"
+  if ! HOME="$sandbox" zsh -f -c 'set -eu; source "$1"' _ "$sandbox/.zshrc" 2>"$zsh_err"; then
+    echo "FAIL - generated .zshrc errors when optional tools are absent"; cat "$zsh_err"; exit 1
+  fi
+  [ ! -s "$zsh_err" ] \
+    || { echo "FAIL - generated .zshrc emitted stderr"; cat "$zsh_err"; exit 1; }
+fi
+
 echo "ok   - stow excludes generated zshrc; source remains unchanged"

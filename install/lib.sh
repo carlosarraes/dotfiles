@@ -52,7 +52,7 @@ bootstrap() {
     pkg_install curl git stow
   fi
 
-  local os arch url tmp
+  local os arch url tmp gum_dir gum_source
   os=Linux
   case "$(uname -m)" in
     x86_64)  arch=x86_64 ;;
@@ -60,11 +60,18 @@ bootstrap() {
     *) die "unsupported architecture: $(uname -m)" ;;
   esac
   tmp="$(mktemp -d)"
+  gum_dir="${TMPDIR:-/tmp}/dotfiles-gum-${UID}"
   url="https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_${os}_${arch}.tar.gz"
   log "downloading gum ${GUM_VERSION} (${arch})"
-  curl -fsSL "$url" | tar -xz -C "$tmp" \
-    || die "failed to download gum from $url"
-  export PATH="$tmp/gum_${GUM_VERSION}_${os}_${arch}:$PATH"
+  if ! curl -fsSL "$url" | tar -xz -C "$tmp"; then
+    rm -rf "$tmp"
+    die "failed to download gum from $url"
+  fi
+  gum_source="$tmp/gum_${GUM_VERSION}_${os}_${arch}/gum"
+  mkdir -p "$gum_dir"
+  install -m 0755 "$gum_source" "$gum_dir/gum"
+  rm -rf "$tmp"
+  export PATH="$gum_dir:$PATH"
   command -v gum >/dev/null || die "gum not available after bootstrap"
 }
 
@@ -97,7 +104,7 @@ pick_stow_targets() {
   local all=()
   for dir in "$repo"/*/; do
     dir=$(basename "$dir")
-    case "$dir" in docs|install|tests|.git) continue ;; esac
+    case "$dir" in cmd|docs|install|tests|.git) continue ;; esac
     [ -n "$(find "$repo/$dir" -maxdepth 0 -type d 2>/dev/null)" ] && all+=("$dir")
   done
   if [ "${NONINTERACTIVE:-0}" = "1" ]; then
@@ -116,6 +123,9 @@ pick_zsh_deps() {
 # --- Executors (Task 5) ------------------------------------------------------
 
 FAILED=()
+INSTALLED_PKGS=()
+STOWED=()
+SKIPPED=()
 
 # Guard against unset selections when executors run without pickers (set -u).
 : "${SELECTED_DEPS:=}"
@@ -126,7 +136,12 @@ done
 install_packages() {
   [ ${#SELECTED_PKGS[@]} -gt 0 ] || { log "no packages selected"; return; }
   log "installing ${#SELECTED_PKGS[@]} packages"
-  pkg_install "${SELECTED_PKGS[@]}" || FAILED+=("packages: some failed")
+  if pkg_install "${SELECTED_PKGS[@]}"; then
+    INSTALLED_PKGS=("${SELECTED_PKGS[@]}")
+  else
+    FAILED+=("packages: some failed")
+    SKIPPED+=("packages:${#SELECTED_PKGS[@]}")
+  fi
 }
 
 stow_configs() {
@@ -135,9 +150,16 @@ stow_configs() {
     target="$HOME"
     if [ -e "$target/$d" ] && [ ! -L "$target/$d" ]; then
       warn "~/$d already exists (not a symlink); skipping stow of '$d'"
-      FAILED+=("stow:$d conflict"); continue
+      FAILED+=("stow:$d conflict")
+      SKIPPED+=("stow:$d")
+      continue
     fi
-    run stow -d "$repo" -t "$target" "$d" || FAILED+=("stow:$d")
+    if run stow -d "$repo" -t "$target" "$d"; then
+      STOWED+=("$d")
+    else
+      FAILED+=("stow:$d")
+      SKIPPED+=("stow:$d")
+    fi
   done
 }
 
@@ -145,16 +167,25 @@ install_zsh_deps() {
   local dep
   for dep in $SELECTED_DEPS; do
     case "$dep" in
-      atuin) run bash -c 'curl -sSf https://setup.atuin.sh | sh' || FAILED+=(atuin) ;;
-      bun)   run bash -c 'curl -fsSL https://bun.sh/install | bash' || FAILED+=(bun) ;;
-      turso) run bash -c 'curl -sSfL https://get.turso.app | sh' || FAILED+=(turso) ;;
+      atuin)
+        if ! run bash -o pipefail -c 'curl -sSf https://setup.atuin.sh | sh'; then
+          FAILED+=(atuin); SKIPPED+=("dep:atuin")
+        fi ;;
+      bun)
+        if ! run bash -o pipefail -c 'curl -fsSL https://bun.sh/install | bash'; then
+          FAILED+=(bun); SKIPPED+=("dep:bun")
+        fi ;;
+      turso)
+        if ! run bash -o pipefail -c 'curl -sSfL https://get.turso.app | sh'; then
+          FAILED+=(turso); SKIPPED+=("dep:turso")
+        fi ;;
       asdf)
-        if [ ! -d "$HOME/.asdf" ]; then
-          run git clone https://github.com/asdf-vm/asdf.git --depth 1 --branch v0.16.7 "$HOME/.asdf" || FAILED+=(asdf)
+        if [ ! -d "$HOME/.asdf" ] && ! run git clone https://github.com/asdf-vm/asdf.git --depth 1 --branch v0.16.7 "$HOME/.asdf"; then
+          FAILED+=(asdf); SKIPPED+=("dep:asdf")
         fi ;;
       nvm)
-        if [ ! -d "$HOME/.nvm" ]; then
-          run git clone https://github.com/nvm-sh/nvm.git --depth 1 "$HOME/.nvm" || FAILED+=(nvm)
+        if [ ! -d "$HOME/.nvm" ] && ! run git clone https://github.com/nvm-sh/nvm.git --depth 1 "$HOME/.nvm"; then
+          FAILED+=(nvm); SKIPPED+=("dep:nvm")
         fi ;;
     esac
   done
@@ -163,15 +194,18 @@ install_zsh_deps() {
 generate_zshrc() {
   local repo=$1 tmp
   run mkdir -p "$HOME/.zsh"
-  if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
-    run git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions" || true
+  if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ] && ! run git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"; then
+    FAILED+=("plugin:zsh-autosuggestions")
+    SKIPPED+=("plugin:zsh-autosuggestions")
   fi
-  if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
-    run git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" || true
+  if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ] && ! run git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"; then
+    FAILED+=("plugin:zsh-syntax-highlighting")
+    SKIPPED+=("plugin:zsh-syntax-highlighting")
   fi
   run mkdir -p "$HOME/.tmux/plugins"
-  if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    run git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" || true
+  if [ ! -d "$HOME/.tmux/plugins/tpm" ] && ! run git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"; then
+    FAILED+=("plugin:tpm")
+    SKIPPED+=("plugin:tpm")
   fi
 
   if [ "$DRY_RUN" = "1" ]; then
@@ -186,12 +220,18 @@ generate_zshrc() {
 }
 
 summary() {
+  local packages_label="installed packages" stow_label="stowed"
+  if [ "$DRY_RUN" = "1" ]; then
+    packages_label="would install packages"
+    stow_label="would stow"
+  fi
   log "---- summary ----"
   log "distro: ${DISTRO:-unknown} ($(command -v gum >/dev/null && echo 'gum ok' || echo 'gum missing'))"
   log "groups: ${SELECTED_GROUPS:-none}"
-  log "packages: ${#SELECTED_PKGS[@]}"
-  log "stowed: ${SELECTED_STOW[*]:-none}"
-  log "zsh deps: ${SELECTED_DEPS:-none}"
+  log "$packages_label (${#INSTALLED_PKGS[@]}): ${INSTALLED_PKGS[*]:-none}"
+  log "$stow_label: ${STOWED[*]:-none}"
+  log "skipped: ${SKIPPED[*]:-none}"
+  log "zsh deps selected: ${SELECTED_DEPS:-none}"
   if [ ${#FAILED[@]} -gt 0 ]; then
     warn "${#FAILED[@]} item(s) failed:"
     local f; for f in "${FAILED[@]}"; do warn "  - $f"; done

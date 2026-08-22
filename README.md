@@ -2,7 +2,7 @@
 
 ## Installer
 
-Requires `git` and `curl`. Supports Arch and Debian-family distributions; the installer handles everything else.
+Requires `curl`. Supports Arch and Debian-family distributions; the installer handles everything else.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/carlosarraes/dotfiles/main/install.sh | bash
