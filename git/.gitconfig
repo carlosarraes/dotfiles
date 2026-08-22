@@ -7,6 +7,7 @@
   default = current
 [pull]
 	rebase = false
+	ff = only
 [core]
 	editor = nvim
 	pager = delta
@@ -31,3 +32,5 @@
 	colorMoved = default
 [credential]
 	helper = store
+[fetch]
+	prune = true
