@@ -31,9 +31,10 @@ run() {
 }
 
 pkg_install() { # install a space-separated list of distro packages
-  case "$PKG" in
+  case "${PKG:-}" in
     pacman) run sudo pacman -S --needed --noconfirm "$@" ;;
     apt)    run sudo apt-get install -y "$@" ;;
+    *)      die "unknown package manager: ${PKG:-unset} (run detect_distro first)" ;;
   esac
 }
 
@@ -106,4 +107,84 @@ ZSH_DEPS="atuin asdf nvm bun turso"
 pick_zsh_deps() {
   if [ "${NONINTERACTIVE:-0}" = "1" ]; then SELECTED_DEPS=$ZSH_DEPS; return; fi
   SELECTED_DEPS=$(printf '%s\n' $ZSH_DEPS | gum choose --height 8 --no-limit || true)
+}
+
+# --- Executors (Task 5) ------------------------------------------------------
+
+FAILED=()
+
+# Guard against unset selections when executors run without pickers (set -u).
+: "${SELECTED_DEPS:=}"
+for _sel in SELECTED_PKGS SELECTED_STOW; do
+  declare -p "$_sel" >/dev/null 2>&1 || declare -a "$_sel=()"
+done
+
+install_packages() {
+  [ ${#SELECTED_PKGS[@]} -gt 0 ] || { log "no packages selected"; return; }
+  log "installing ${#SELECTED_PKGS[@]} packages"
+  pkg_install "${SELECTED_PKGS[@]}" || FAILED+=("packages: some failed")
+}
+
+stow_configs() {
+  local repo=$1 d target
+  for d in "${SELECTED_STOW[@]}"; do
+    target="$HOME"
+    if [ -e "$target/$d" ] && [ ! -L "$target/$d" ]; then
+      warn "~/$d already exists (not a symlink); skipping stow of '$d'"
+      FAILED+=("stow:$d conflict"); continue
+    fi
+    run stow -d "$repo" -t "$target" "$d" || FAILED+=("stow:$d")
+  done
+}
+
+install_zsh_deps() {
+  local dep
+  for dep in $SELECTED_DEPS; do
+    case "$dep" in
+      atuin) run bash -c 'curl -sSf https://setup.atuin.sh | sh' || FAILED+=(atuin) ;;
+      bun)   run bash -c 'curl -fsSL https://bun.sh/install | bash' || FAILED+=(bun) ;;
+      turso) run bash -c 'curl -sSfL https://get.turso.app | sh' || FAILED+=(turso) ;;
+      asdf)
+        if [ ! -d "$HOME/.asdf" ]; then
+          run git clone https://github.com/asdf-vm/asdf.git --depth 1 --branch v0.16.7 "$HOME/.asdf" || FAILED+=(asdf)
+        fi ;;
+      nvm)
+        if [ ! -d "$HOME/.nvm" ]; then
+          run git clone https://github.com/nvm-sh/nvm.git --depth 1 "$HOME/.nvm" || FAILED+=(nvm)
+        fi ;;
+    esac
+  done
+}
+
+generate_zshrc() {
+  local repo=$1
+  mkdir -p "$HOME/.zsh"
+  if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
+    run git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions" || true
+  fi
+  if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
+    run git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" || true
+  fi
+  mkdir -p "$HOME/.tmux/plugins"
+  if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    run git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" || true
+  fi
+  apply_zsh_guards "$repo/zsh/.zshrc.template" "$HOME/.zshrc" $SELECTED_DEPS
+  log "generated ~/.zshrc (deps: ${SELECTED_DEPS:-none})"
+}
+
+summary() {
+  log "---- summary ----"
+  log "distro: ${DISTRO:-unknown} ($(command -v gum >/dev/null && echo 'gum ok' || echo 'gum missing'))"
+  log "groups: ${SELECTED_GROUPS:-none}"
+  log "packages: ${#SELECTED_PKGS[@]}"
+  log "stowed: ${SELECTED_STOW[*]:-none}"
+  log "zsh deps: ${SELECTED_DEPS:-none}"
+  if [ ${#FAILED[@]} -gt 0 ]; then
+    warn "${#FAILED[@]} item(s) failed:"
+    local f; for f in "${FAILED[@]}"; do warn "  - $f"; done
+  else
+    log "all steps completed without failures"
+  fi
+  command -v zsh >/dev/null && log "reminder: chsh -s \"$(command -v zsh)\" to make zsh your default shell"
 }
