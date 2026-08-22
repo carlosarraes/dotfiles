@@ -62,3 +62,44 @@ bootstrap() {
   export PATH="$tmp/gum_${GUM_VERSION}_${os}_${arch}:$PATH"
   command -v gum >/dev/null || die "gum not available after bootstrap"
 }
+
+# --- Interactive pickers -----------------------------------------------------
+
+pick_groups() {
+  if [ "${NONINTERACTIVE:-0}" = "1" ]; then SELECTED_GROUPS=$(catalog_groups); return; fi
+  SELECTED_GROUPS=$(gum choose --height 10 --no-limit $(catalog_groups) || true)
+}
+
+pick_packages() {
+  SELECTED_PKGS=()
+  local g entry picked
+  for g in $SELECTED_GROUPS; do
+    local names=()
+    while IFS=: read -r _ dpkg; do names+=("$dpkg"); done < <(catalog_packages "$g")
+    [ ${#names[@]} -gt 0 ] || continue
+    if [ "${NONINTERACTIVE:-0}" = "1" ]; then
+      SELECTED_PKGS+=("${names[@]}")
+    else
+      mapfile -t picked < <(printf '%s\n' "${names[@]}" | gum choose --height 15 --no-limit || true)
+      SELECTED_PKGS+=("${picked[@]}")
+    fi
+  done
+}
+
+pick_stow_targets() {
+  local repo=$1 dir
+  local all=()
+  for dir in "$repo"/*/; do
+    dir=$(basename "$dir")
+    case "$dir" in docs|install|tests|.git) continue ;; esac
+    [ -n "$(find "$repo/$dir" -maxdepth 0 -type d 2>/dev/null)" ] && all+=("$dir")
+  done
+  if [ "${NONINTERACTIVE:-0}" = "1" ]; then SELECTED_STOW=("${all[@]}"); return; fi
+  mapfile -t SELECTED_STOW < <(printf '%s\n' "${all[@]}" | gum choose --height 15 --no-limit || true)
+}
+
+ZSH_DEPS="atuin asdf nvm bun turso"
+pick_zsh_deps() {
+  if [ "${NONINTERACTIVE:-0}" = "1" ]; then SELECTED_DEPS=$ZSH_DEPS; return; fi
+  SELECTED_DEPS=$(printf '%s\n' $ZSH_DEPS | gum choose --height 8 --no-limit || true)
+}
