@@ -38,4 +38,31 @@ assert_eq "both selected keeps both" \
 line2
 export BUN_INSTALL="$HOME/.bun"' "$(cat "$tmp/out3")"
 
+# --- Task 2: catalog + distro detection ---
+source install/catalog.sh
+
+DISTRO=arch
+arch_out=$(catalog_packages terminal)
+case "$arch_out" in *fd:fd*) :;; *) echo "FAIL - arch terminal missing fd:fd"; fail=1;; esac
+case "$arch_out" in *bat:bat*) :;; *) echo "FAIL - arch terminal missing bat:bat"; fail=1;; esac
+assert_eq "arch groups list" "$(printf '%s\n' apps essentials fonts manpages node terminal wayland | sort)" "$(catalog_groups | sort)"
+
+DISTRO=debian
+deb_out=$(catalog_packages terminal)
+case "$deb_out" in *fd:fd-find*) :;; *) echo "FAIL - debian fd maps to fd-find"; fail=1;; esac
+case "$deb_out" in *yazi*) echo "FAIL - yazi should be absent on debian"; fail=1;; esac
+assert_eq "debian unavailable entries skipped" "" "$(catalog_packages terminal | grep -E '^(fastfetch|eza|lazygit|starship):' || true)"
+
+# unsupported distro must die: run in a subshell with a fake os-release so
+# die()'s exit doesn't kill the harness and the host distro doesn't leak in
+tmprel=$(mktemp -d)
+echo 'ID=nixos' > "$tmprel/os-release"
+if ( source install/catalog.sh; detect_distro "$tmprel/os-release" ) >/dev/null 2>&1; then
+  echo "FAIL - unsupported distro should die"; fail=1
+else
+  echo "ok   - unsupported distro dies"
+fi
+rm -rf "$tmprel"
+echo "catalog tests done"
+
 rm -rf "$tmp"; exit $fail
