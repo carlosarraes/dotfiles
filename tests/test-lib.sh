@@ -86,4 +86,18 @@ SELECTED_GROUPS=
 pick_packages
 echo "ok   - empty group list leaves SELECTED_PKGS empty without error"
 
+# --- Task 6 fix round 1: dry-run generation must not write under HOME ---
+test_home=$(mktemp -d)
+old_home=$HOME
+HOME=$test_home
+SELECTED_DEPS=asdf
+generate_zshrc "$PWD" >/dev/null
+if [ -z "$(find "$test_home" -mindepth 1 -print -quit)" ]; then
+  echo "ok   - dry-run zsh generation leaves HOME untouched"
+else
+  echo "FAIL - dry-run zsh generation wrote under HOME"; fail=1
+fi
+HOME=$old_home
+rm -rf "$test_home"
+
 rm -rf "$tmp"; exit $fail

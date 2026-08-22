@@ -157,19 +157,27 @@ install_zsh_deps() {
 }
 
 generate_zshrc() {
-  local repo=$1
-  mkdir -p "$HOME/.zsh"
+  local repo=$1 tmp
+  run mkdir -p "$HOME/.zsh"
   if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
     run git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions" || true
   fi
   if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
     run git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" || true
   fi
-  mkdir -p "$HOME/.tmux/plugins"
+  run mkdir -p "$HOME/.tmux/plugins"
   if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     run git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" || true
   fi
-  apply_zsh_guards "$repo/zsh/.zshrc.template" "$HOME/.zshrc" $SELECTED_DEPS
+
+  if [ "$DRY_RUN" = "1" ]; then
+    printf '[dry-run] generate %s from %s\n' "$HOME/.zshrc" "$repo/zsh/.zshrc.template"
+  else
+    tmp="$(mktemp)"
+    apply_zsh_guards "$repo/zsh/.zshrc.template" "$tmp" $SELECTED_DEPS
+    run install -m 0644 "$tmp" "$HOME/.zshrc"
+    run rm -f "$tmp"
+  fi
   log "generated ~/.zshrc (deps: ${SELECTED_DEPS:-none})"
 }
 

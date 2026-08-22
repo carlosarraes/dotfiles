@@ -17,11 +17,22 @@ while [ $# -gt 0 ]; do
 done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+TEMP_REPO=""
+cleanup() {
+  [ -z "$TEMP_REPO" ] || rm -rf "$TEMP_REPO"
+}
+trap cleanup EXIT
+
 if [ -f "$SCRIPT_DIR/install/lib.sh" ] && [ -z "$REPO" ]; then
   REPO="$SCRIPT_DIR"
 elif [ -z "$REPO" ]; then
-  REPO="$HOME/.dotfiles"
-  [ -d "$REPO" ] || git clone https://github.com/carlosarraes/dotfiles.git "$REPO"
+  if [ "$DRY_RUN" = "1" ]; then
+    TEMP_REPO="$(mktemp -d)"
+    REPO="$TEMP_REPO"
+  else
+    REPO="$HOME/.dotfiles"
+  fi
+  [ -d "$REPO/.git" ] || git clone https://github.com/carlosarraes/dotfiles.git "$REPO"
 fi
 
 # shellcheck source=install/lib.sh
