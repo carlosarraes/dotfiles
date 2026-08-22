@@ -21,3 +21,44 @@ apply_zsh_guards() {
     skip == 0 { print }
   ' "$template" > "$out"
 }
+
+DRY_RUN="${DRY_RUN:-0}"
+GUM_VERSION="0.14.5"
+
+run() {
+  if [ "$DRY_RUN" = "1" ]; then printf '[dry-run] %s\n' "$*"; return 0; fi
+  "$@"
+}
+
+pkg_install() { # install a space-separated list of distro packages
+  case "$PKG" in
+    pacman) run sudo pacman -S --needed --noconfirm "$@" ;;
+    apt)    run sudo apt-get install -y "$@" ;;
+  esac
+}
+
+bootstrap() {
+  export DEBIAN_FRONTEND=noninteractive
+  [ "$(id -u)" -eq 0 ] || run sudo -v
+  if [ "$DISTRO" = "debian" ]; then
+    run sudo apt-get update
+    pkg_install curl ca-certificates git stow
+  else
+    pkg_install curl git stow
+  fi
+
+  local os arch url tmp
+  os=Linux
+  case "$(uname -m)" in
+    x86_64)  arch=x86_64 ;;
+    aarch64|arm64) arch=arm64 ;;
+    *) die "unsupported architecture: $(uname -m)" ;;
+  esac
+  tmp="$(mktemp -d)"
+  url="https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_${os}_${arch}.tar.gz"
+  log "downloading gum ${GUM_VERSION} (${arch})"
+  curl -fsSL "$url" | tar -xz -C "$tmp" \
+    || die "failed to download gum from $url"
+  export PATH="$tmp/gum_${GUM_VERSION}_${os}_${arch}:$PATH"
+  command -v gum >/dev/null || die "gum not available after bootstrap"
+}

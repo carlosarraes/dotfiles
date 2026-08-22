@@ -65,4 +65,9 @@ fi
 rm -rf "$tmprel"
 echo "catalog tests done"
 
+# --- Task 3: run wrapper dry-run ---
+DRY_RUN=1
+out=$(run pacman -Syu)
+case "$out" in "[dry-run] pacman -Syu") echo "ok   - dry-run prints command";; *) echo "FAIL - run/dry-run got: $out"; fail=1;; esac
+
 rm -rf "$tmp"; exit $fail
