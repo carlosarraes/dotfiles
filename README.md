@@ -1,5 +1,21 @@
 # Dotfiles
 
+## Installer
+
+Requires `git` and `curl`. Supports Arch and Debian-family distributions; the installer handles everything else.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/carlosarraes/dotfiles/main/install.sh | bash
+```
+
+| Flag | Description |
+| --- | --- |
+| `--dry-run` | Print actions without changing the system; interactive prompts still run. |
+| `--non-interactive` | Select everything without prompts. |
+| `--repo <path>` | Use an existing repository clone. |
+
+Fresh machines get `~/.zshrc` generated from `zsh/.zshrc.template`, keeping only selected tools' blocks. The owner's live `zsh/.zshrc` is untouched by the installer.
+
 ## Essentials
 
 `sudo pacman -S git stow neovim zsh`
