@@ -13,7 +13,7 @@ source_hash=$(sha256sum zsh/.zshrc | cut -d' ' -f1)
 stow -d "$PWD" -t "$sandbox" zsh
 
 test -L "$sandbox/.zshenv" || { echo "FAIL - .zshenv was not stowed"; exit 1; }
-test ! -e "$sandbox/.zshrc" || { echo "FAIL - stow linked .zshrc"; exit 1; }
+test -L "$sandbox/.zshrc" || { echo "FAIL - stow did not link .zshrc"; exit 1; }
 test ! -e "$sandbox/.zshrc.template" || { echo "FAIL - stow linked .zshrc.template"; exit 1; }
 
 # Avoid network clones: these existing directories make generation focus on
@@ -45,4 +45,4 @@ if command -v zsh >/dev/null; then
     || { echo "FAIL - generated .zshrc emitted stderr"; cat "$zsh_err"; exit 1; }
 fi
 
-echo "ok   - stow excludes generated zshrc; source remains unchanged"
+echo "ok   - stow links zshrc; generation replaces link without changing source"
