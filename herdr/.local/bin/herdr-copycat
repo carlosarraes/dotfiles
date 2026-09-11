@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# herdr popup command: pick a path, URL, UUID, git SHA, or IP from the
+# active pane's recent output and copy it to the *client's* clipboard.
+# Copy goes through OSC 52, which herdr forwards to the attached client,
+# so it works the same for local and remote (ssh machine) panes.
+set -euo pipefail
+
+pane="${HERDR_ACTIVE_PANE_ID:-${HERDR_PANE_ID:-}}"
+if [ -z "$pane" ]; then
+  echo "herdr-copycat: no active pane" >&2
+  sleep 1
+  exit 1
+fi
+
+read -r -d '' extract <<'PY' || true
+import re, sys
+text = sys.stdin.read()
+patterns = [
+    r"""https?://[^\s"'<>()\[\]]+""",
+    r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b",
+    # absolute, ~, ./ and ../ paths, optional :line suffix
+    r"(?<![\w/.~…])(?:~|\.{1,2})?/[\w.@%+~-]+(?:/[\w.@%+~-]+)*(?::\d+)?",
+    # relative paths: need a file extension or at least two slashes, optional :line
+    r"(?<![\w/.~…])[\w.-]+(?:(?:/[\w.-]+){2,}|/[\w-]+\.[\w.]+)(?::\d+)?",
+    # git sha: 7-40 hex chars containing both a digit and a letter
+    r"\b(?=[0-9a-f]*[a-f])(?=[0-9a-f]*\d)[0-9a-f]{7,40}\b",
+    r"\b\d{1,3}(?:\.\d{1,3}){3}(?::\d+)?\b",
+]
+found = {}
+for p in patterns:
+    for m in re.finditer(p, text):
+        tok = m.group(0).rstrip(".,;:")
+        if len(tok) < 4 or tok in found:
+            continue
+        found[tok] = m.start()
+# drop fragments of longer matches (e.g. hex runs inside a UUID)
+toks = sorted(found, key=len, reverse=True)
+kept = [t for i, t in enumerate(toks) if not any(t in o for o in toks[:i])]
+# most recent output first
+for tok in sorted(kept, key=lambda t: -found[t]):
+    print(tok)
+PY
+
+candidates=$(herdr pane read "$pane" --source recent --lines 5000 --format text | python3 -c "$extract")
+
+if [ -z "$candidates" ]; then
+  echo "herdr-copycat: nothing to copy in pane $pane" >&2
+  sleep 1
+  exit 0
+fi
+
+if [ "${HERDR_COPYCAT_LIST:-}" = "1" ]; then
+  printf '%s\n' "$candidates"
+  exit 0
+fi
+
+selection=$(printf '%s\n' "$candidates" | fzf --reverse --no-sort --exact --prompt='copy ❯ ' --height=100%) || exit 0
+
+# OSC 52 to the popup's own tty; herdr forwards it to the attached client
+printf '\033]52;c;%s\a' "$(printf '%s' "$selection" | base64 | tr -d '\n')"

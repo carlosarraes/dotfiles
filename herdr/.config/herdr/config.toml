@@ -1,0 +1,114 @@
+onboarding = false
+[keys]
+prefix = "ctrl+a"
+
+# tmux: | and -
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+
+# tmux: h/j/k/l focus, plus direct ctrl+hjkl like vim-tmux-navigator (terminal to terminal)
+focus_pane_left = ["prefix+h", "ctrl+h"]
+focus_pane_down = ["prefix+j", "ctrl+j"]
+focus_pane_up = ["prefix+k", "ctrl+k"]
+focus_pane_right = ["prefix+l", "ctrl+l"]
+
+# tmux: -r H/J/K/L resize (direct, no resize mode)
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+resize_mode = "prefix+ctrl+r"
+
+# tmux: N new-session, X kill-session -> workspace
+new_workspace = "prefix+shift+n"
+close_workspace = "prefix+shift+x"
+
+# tmux: c new-window, x kill-window, r rename-window -> tab
+new_tab = "prefix+c"
+close_tab = "prefix+x"
+rename_tab = "prefix+r"
+close_pane = "prefix+ctrl+x"
+
+# tmux: $ rename-session -> workspace
+rename_workspace = "prefix+$"
+
+# Navigate mode (ctrl+a w): j/k move between workspaces, ctrl+hjkl or arrows move between panes
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+navigate_pane_left = "ctrl+h"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
+navigate_pane_right = "ctrl+l"
+
+# tmux: R source-file
+reload_config = "prefix+shift+r"
+
+# tmux detach
+detach = "prefix+d"
+
+# agents: cycle through the sidebar agent list (no alt key on this keyboard)
+next_agent = "prefix+ctrl+j"
+previous_agent = "prefix+ctrl+k"
+
+# herdr defaults displaced by g / G popups below
+goto = "prefix+ctrl+g"
+new_worktree = "prefix+ctrl+w"
+
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+description = "lazygit"
+width = "90%"
+height = "85%"
+
+[[keys.command]]
+key = "prefix+shift+g"
+type = "popup"
+command = "lazydocker"
+description = "lazydocker"
+width = "90%"
+height = "85%"
+
+# tmux-floax: prefix+a scratch shell
+[[keys.command]]
+key = "prefix+a"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "scratch shell"
+width = "80%"
+height = "80%"
+
+# tmux-copycat prefix+ctrl+f / ctrl+i: pick a path, url, uuid, sha from the pane
+[[keys.command]]
+key = "prefix+ctrl+f"
+type = "popup"
+command = "herdr-copycat"
+description = "copy path / url / uuid / sha"
+width = "70%"
+height = "60%"
+
+[ui]
+pane_gaps = false
+pane_outer_borders = false
+tab_bar_position = "bottom"
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[update]
+channel = "preview"
+
+# recife: Tokyo Night palette from tmux-recife
+[theme.custom]
+panel_bg = "#1a1b26"       # @recife_background
+sidebar_bg = "#1a1b26"
+active_row_bg = "#2a2f41"  # @recife_surface
+selection_bg = "#2a2f41"
+surface_dim = "#2a2f41"
+text = "#a9b1d6"           # @recife_foreground
+accent = "#7aa2f7"         # @recife_accent
+blue = "#7aa2f7"
+green = "#9ece6a"          # @recife_active
+yellow = "#e0af68"         # @recife_alert
