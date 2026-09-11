@@ -1,0 +1,5 @@
+gui:
+  screenMode: half
+  sidePanelWidth: 0.25
+  expandFocusedSidePanel: true
+  showCommandLog: false

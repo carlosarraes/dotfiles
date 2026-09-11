@@ -7,6 +7,9 @@ export WLR_NO_HARDWARE_CURSORS=1
 
 export PATH=$PATH:~/go/bin
 
+# macOS lazygit defaults to ~/Library/Application Support; pin it to the stowed file
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
+
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
