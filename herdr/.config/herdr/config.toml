@@ -112,3 +112,9 @@ accent = "#7aa2f7"         # @recife_accent
 blue = "#7aa2f7"
 green = "#9ece6a"          # @recife_active
 yellow = "#e0af68"         # @recife_alert
+
+[ui.toast]
+delivery = "herdr"
+
+[ui.sound]
+enabled = true
