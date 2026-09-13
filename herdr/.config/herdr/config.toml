@@ -54,10 +54,11 @@ previous_agent = "prefix+ctrl+k"
 goto = "prefix+ctrl+g"
 new_worktree = "prefix+ctrl+w"
 
+# popups run via /bin/sh with the server PATH; a login zsh adds Homebrew on macOS
 [[keys.command]]
 key = "prefix+g"
 type = "popup"
-command = "lazygit"
+command = "zsh -lc lazygit"
 description = "lazygit"
 width = "90%"
 height = "85%"
@@ -65,7 +66,7 @@ height = "85%"
 [[keys.command]]
 key = "prefix+shift+g"
 type = "popup"
-command = "lazydocker"
+command = "zsh -lc lazydocker"
 description = "lazydocker"
 width = "90%"
 height = "85%"
@@ -74,7 +75,7 @@ height = "85%"
 [[keys.command]]
 key = "prefix+a"
 type = "popup"
-command = "exec \"${SHELL:-sh}\""
+command = "exec \"${SHELL:-sh}\" -l"
 description = "scratch shell"
 width = "80%"
 height = "80%"
@@ -83,7 +84,7 @@ height = "80%"
 [[keys.command]]
 key = "prefix+ctrl+f"
 type = "popup"
-command = "herdr-copycat"
+command = "zsh -lc herdr-copycat"
 description = "copy path / url / uuid / sha"
 width = "70%"
 height = "60%"
@@ -114,7 +115,7 @@ green = "#9ece6a"          # @recife_active
 yellow = "#e0af68"         # @recife_alert
 
 [ui.toast]
-delivery = "herdr"
+delivery = "off"
 
 [ui.sound]
 enabled = true
